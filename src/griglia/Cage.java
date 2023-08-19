@@ -7,6 +7,21 @@ public class Cage {
     private int targetNumber;
     private Operator cageOperation;
 
+
+    public Point[] getCagePoint() {
+        return cagePoint;
+    }
+
+    public int getTargetNumber() {
+        return targetNumber;
+    }
+
+
+    public Operator getCageOperation() {
+        return cageOperation;
+    }
+
+
     public Cage(int targetNumber, Operator operator, Point... points) {
         if ((operator == Operator.DIV || operator == Operator.SUB) && (points.length != 2))
             throw new IllegalArgumentException("Divisone e Sottrazione accettano solo 2 blocchi... vedi regole ufficiali kenken");
@@ -36,6 +51,5 @@ public class Cage {
         result = 31 * result + (cagePoint != null ? Arrays.hashCode(cagePoint) : 0);
         return result;
     }
-
 
 }
