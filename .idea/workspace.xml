@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="adjusted modify">
-      <change afterPath="$PROJECT_DIR$/src/risolutore/Backtracking.java" afterDir="false" />
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="solution setup&#10;solidified code">
       <change afterPath="$PROJECT_DIR$/src/risolutore/MainFastTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/risolutore/Risolutore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Cage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Operator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Puzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/Risolutore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/Risolutore.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,16 +91,52 @@
       <option name="project" value="LOCAL" />
       <updated>1692465401421</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="solution setup&#10;solidified code">
+      <option name="closed" value="true" />
+      <created>1692555250914</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692555250914</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="master" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/master" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="saved modify" />
     <MESSAGE value="Puzzle setup" />
     <MESSAGE value="adjusted modify" />
-    <option name="LAST_COMMIT_MESSAGE" value="adjusted modify" />
+    <MESSAGE value="solution setup&#10;solidified code" />
+    <option name="LAST_COMMIT_MESSAGE" value="solution setup&#10;solidified code" />
   </component>
 </project>

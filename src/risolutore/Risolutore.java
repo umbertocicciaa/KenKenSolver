@@ -5,10 +5,7 @@ import griglia.Operator;
 import griglia.Point;
 import griglia.Puzzle;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public final class Risolutore extends Backtracking<Point, Integer> {
     private final Puzzle puzzle;
@@ -57,97 +54,74 @@ public final class Risolutore extends Backtracking<Point, Integer> {
 
     @Override
     protected boolean assegnabile(Integer scelta, Point puntoDiScelta) {
-        boolean RepetionInRowColom = presentInRowColom(scelta, puntoDiScelta);
-        boolean isPossibleChoiceForCage = possibleChoiceForCage(scelta, puntoDiScelta);
-        return !RepetionInRowColom && isPossibleChoiceForCage;
+        boolean presente = presenteInRigaColonna(scelta, puntoDiScelta);
+        boolean obbiettivoVerificato = verificaObiettivo(puzzle.getPointToCage().get(puntoDiScelta), scelta);
+        return !presente && obbiettivoVerificato && board[puntoDiScelta.getX()][puntoDiScelta.getY()] == null;
     }
 
-    private boolean possibleChoiceForCage(Integer scelta, Point puntoDiScelta) {
-        Cage cage = puzzle.getPointToCage().get(puntoDiScelta);
-        Set<Point> points = getPointOfCage(cage);
-        Operator operator = cage.getCageOperation();
+    private boolean verificaObiettivo(Cage cage, Integer scelta) {
+        List<Integer> valori = new ArrayList<>();
+        Point[] points = cage.getCagePoint();
+        for (Point p : points)
+            if (board[p.getX()][p.getY()] != null)
+                valori.add(board[p.getX()][p.getY()]);
         int target = cage.getTargetNumber();
-        Iterator<Point> iterator = points.iterator();
-        switch (operator) {
+        switch (cage.getCageOperation()) {
             case SUM -> {
                 int sum = 0;
-                while (iterator.hasNext()) {
-                    Point point = iterator.next();
-                    if (board[point.getX()][point.getY()] != null)
-                        sum += board[point.getX()][point.getY()];
-                }
-                if (sum + scelta <= target)
-                    return true;
+                for (Integer x : valori)
+                    sum += x;
+                return sum + scelta <= target;
             }
             case MUL -> {
-                int product = 1;
-                while (iterator.hasNext()) {
-                    Point point = iterator.next();
-                    if (board[point.getX()][point.getY()] != null)
-                        product *= board[point.getX()][point.getY()];
-                }
-                if (product * scelta <= target)
-                    return true;
+                int mul = 1;
+                for (Integer x : valori)
+                    mul *= x;
+                return mul * scelta <= target;
             }
             case SUB -> {
-                boolean primo = true;
-                int sub = 0;
-                while (iterator.hasNext()) {
-                    Point point = iterator.next();
-                    if (board[point.getX()][point.getY()] != null && primo) {
-                        sub = board[point.getX()][point.getY()];
-                        primo = false;
-                    } else {
-                        if (board[point.getX()][point.getY()] != null)
-                            sub -= board[point.getX()][point.getY()];
-                    }
-                }
-                if (sub - scelta >= target)
+                Point p1 = points[0], p2 = points[1];
+                Integer v1 = board[p1.getX()][p1.getY()], v2 = board[p2.getX()][p2.getY()];
+                if (v1 == null && v2 == null)
                     return true;
+                if (v1 == null) {
+                    return Math.abs(v2 - scelta) == target;
+                }
+                return Math.abs(v1 - scelta) == target;
             }
             case DIV -> {
-                boolean primo = true;
-                int div = 0;
-                while (iterator.hasNext()) {
-                    Point point = iterator.next();
-                    if (board[point.getX()][point.getY()] != null && primo) {
-                        div = board[point.getX()][point.getY()];
-                        primo = false;
-                    } else {
-                        if (board[point.getX()][point.getY()] != null)
-                            div /= board[point.getX()][point.getY()];
-                    }
-                }
-                if (div / scelta >= target)
+                Point p1 = points[0], p2 = points[1];
+                Integer v1 = board[p1.getX()][p1.getY()], v2 = board[p2.getX()][p2.getY()];
+                if (v1 == null && v2 == null)
                     return true;
+                if (v1 == null) {
+                    if (v2 % scelta == 0)
+                        return v2 / scelta == target;
+                    return false;
+                }
+                if (v1 % scelta == 0)
+                    return v1 / scelta == target;
+                return false;
             }
             case NONE -> {
-                if (scelta == target)
-                    return true;
+                return scelta == target;
             }
         }
         return false;
     }
 
-    private Set<Point> getPointOfCage(Cage cage) {
-        Set<Point> points = new HashSet<>();
-        for (Point point : puzzle.getPointToCage().keySet())
-            if (puzzle.getPointToCage().get(point).equals(cage))
-                points.add(point);
-        return points;
-    }
-
-    private boolean presentInRowColom(Integer scelta, Point puntoDiScelta) {
-        int r = puntoDiScelta.getX();
-        int c = puntoDiScelta.getY();
-        for (Integer x : board[r])
-            if (x != null && x.equals(scelta))
+    private boolean presenteInRigaColonna(Integer scelta, Point puntoDiScelta) {
+        int riga = puntoDiScelta.getX();
+        int colonna = puntoDiScelta.getY();
+        for (Integer x : board[riga])
+            if ((x != null) && x.equals(scelta))
                 return true;
         for (int i = 0; i < size; ++i)
-            if (board[i][c] != null && board[i][c].equals(scelta))
+            if (board[i][colonna] != null && board[i][colonna].equals(scelta))
                 return true;
         return false;
     }
+
 
     @Override
     protected void assegna(Integer scelta, Point puntoDiScelta) {
@@ -167,6 +141,8 @@ public final class Risolutore extends Backtracking<Point, Integer> {
 
     @Override
     protected Integer primaScelta(Point ps) {
+        if (puzzle.getPointToCage().get(ps).getCageOperation() == Operator.NONE)
+            return puzzle.getPointToCage().get(ps).getTargetNumber();
         return 1;
     }
 
