@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="Puzzle setup">
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="adjusted modify">
+      <change afterPath="$PROJECT_DIR$/src/risolutore/Backtracking.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/risolutore/MainFastTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/risolutore/Risolutore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/griglia/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Cage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Operator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/griglia/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/griglia/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Puzzle.java" afterDir="false" />
     </list>
@@ -18,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -30,6 +34,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2U2Py805J2D4pizwd7g4rQ9Ipdz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -81,7 +88,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692464082721</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="adjusted modify">
+      <option name="closed" value="true" />
+      <created>1692465401421</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1692465401421</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,6 +105,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="saved modify" />
     <MESSAGE value="Puzzle setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Puzzle setup" />
+    <MESSAGE value="adjusted modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="adjusted modify" />
   </component>
 </project>

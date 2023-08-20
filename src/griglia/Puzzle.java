@@ -1,56 +1,69 @@
 package griglia;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Puzzle {
     private final int size;
     private final Set<Cage> cages;
-    private Integer[][] board;
+    private final Map<Point, Cage> pointToCage;
 
     private Puzzle(PuzzleBuilder builder) {
         if (builder == null)
             throw new NullPointerException("Hai passato un builder null");
         this.size = builder.size;
         this.cages = Collections.unmodifiableSet(builder.cages);
-        this.board = builder.board;
+        this.pointToCage = Collections.unmodifiableMap(builder.pointToCage);
     }
 
     public int getSize() {
         return size;
     }
 
+    public Set<Cage> getCages() {
+        return cages;
+    }
+
+    public Map<Point, Cage> getPointToCage() {
+        return pointToCage;
+    }
+
     public static class PuzzleBuilder {
         private int size;
         private Set<Cage> cages;
-        private Integer[][] board;
+        private Map<Point, Cage> pointToCage;
 
         public PuzzleBuilder(int size) {
             if (size < 3 || size > 9)
                 throw new IllegalArgumentException("Dimensioni puzzle scorrette");
             this.size = size;
             cages = new HashSet<>();
-            board = new Integer[size][size];
+            pointToCage = new HashMap<>();
         }
 
         public PuzzleBuilder addCageToPuzzle(int target, Operator operator, Point... points) {
-            cages.add(new Cage(target, operator, points));
-            return this;
-        }
-
-        public PuzzleBuilder addNumberToPoint(int number, Point point) {
-            int x = point.getX();
-            int y = point.getY();
-            if (board[x][y] != null)
-                throw new RuntimeException("Cella gia occupata: ripeti costruzione");
-            board[x][y] = number;
+            Cage cage = new Cage(target, operator, points);
+            cages.add(cage);
+            for (Point point : points) {
+                if (pointToCage.containsKey(point))
+                    throw new RuntimeException("Il puzzle contiene gia il punto: " + point);
+                pointToCage.put(point, cage);
+            }
             return this;
         }
 
         public Puzzle build() {
+            checkAllPointAreInCage();
             return new Puzzle(this);
+        }
+
+        private void checkAllPointAreInCage() {
+            for (int i = 0; i < size; ++i) {
+                for (int j = 0; j < size; ++j) {
+                    Point point = new Point(i, j);
+                    if(!pointToCage.containsKey(point))
+                        throw new RuntimeException("Alcune celle non sono state inserite nei cage");
+                }
+            }
         }
 
     }
