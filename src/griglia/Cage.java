@@ -54,4 +54,12 @@ public class Cage {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Cage{" +
+                "cagePoint=" + Arrays.toString(cagePoint) +
+                ", targetNumber=" + targetNumber +
+                ", cageOperation=" + cageOperation +
+                '}';
+    }
 }

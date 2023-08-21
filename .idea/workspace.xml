@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="solution setup&#10;solidified code">
-      <change afterPath="$PROJECT_DIR$/src/risolutore/MainFastTest.java" afterDir="false" />
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="solution fixed">
+      <change afterPath="$PROJECT_DIR$/src/risolutore/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/risolutore/Risolutore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/Risolutore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Cage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Puzzle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,13 +26,14 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="rebuild" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2U2Py805J2D4pizwd7g4rQ9Ipdz" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -39,22 +41,56 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "rebuild",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;rebuild&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="risolutore.Main" />
+      <module name="KenKenSolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="risolutore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainFastTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="risolutore.MainFastTest" />
+      <module name="KenKenSolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="risolutore.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.MainFastTest" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -66,6 +102,8 @@
       <workItem from="1692134954495" duration="53000" />
       <workItem from="1692135099170" duration="8000" />
       <workItem from="1692268762447" duration="3023000" />
+      <workItem from="1692563795998" duration="127000" />
+      <workItem from="1692563970155" duration="10366000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
@@ -99,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692555250914</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="solution fixed">
+      <option name="closed" value="true" />
+      <created>1692562635372</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692562635372</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,12 +177,45 @@
         </entry>
       </map>
     </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/rebuild" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="saved modify" />
     <MESSAGE value="Puzzle setup" />
     <MESSAGE value="adjusted modify" />
     <MESSAGE value="solution setup&#10;solidified code" />
-    <option name="LAST_COMMIT_MESSAGE" value="solution setup&#10;solidified code" />
+    <MESSAGE value="solution fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="solution fixed" />
+  </component>
+  <component name="XDebuggerManager">
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="griglia.Puzzle" memberName="size" />
+        <PinnedItemInfo parentTag="risolutore.Risolutore" memberName="board" />
+        <PinnedItemInfo parentTag="griglia.Puzzle" memberName="cages" />
+        <PinnedItemInfo parentTag="griglia.Puzzle" memberName="pointToCage" />
+        <PinnedItemInfo parentTag="risolutore.Risolutore" memberName="ultimoPunto" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
