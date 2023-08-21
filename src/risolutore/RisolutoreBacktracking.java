@@ -7,13 +7,13 @@ import griglia.Puzzle;
 
 import java.util.*;
 
-public final class Risolutore extends Backtracking<Point, Integer> {
+public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     private final Puzzle puzzle;
     private final Integer[][] board;
     private final int size;
     private final Point ultimoPunto;
 
-    public Risolutore(Puzzle puzzle) {
+    public RisolutoreBacktracking(Puzzle puzzle) {
         // https://www.kenkenpuzzle.com/faq#faq-3 una sola soluzione per problema
         super(1);
         if (puzzle == null)

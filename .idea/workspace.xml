@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="solution fixed">
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="add puzzle file read">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/risolutore/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/risolutore/RIsolutoreDFS.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/risolutore/RisolviPuzzle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Cage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Puzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/Backtracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/Backtracking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/Risolutore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +22,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -41,22 +45,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;rebuild&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "rebuild",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="risolutore" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="risolutore.Main" />
@@ -103,7 +113,7 @@
       <workItem from="1692135099170" duration="8000" />
       <workItem from="1692268762447" duration="3023000" />
       <workItem from="1692563795998" duration="127000" />
-      <workItem from="1692563970155" duration="10366000" />
+      <workItem from="1692563970155" duration="12185000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
@@ -145,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692562635372</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add puzzle file read">
+      <option name="closed" value="true" />
+      <created>1692614962972</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692614962972</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,7 +223,8 @@
     <MESSAGE value="adjusted modify" />
     <MESSAGE value="solution setup&#10;solidified code" />
     <MESSAGE value="solution fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="solution fixed" />
+    <MESSAGE value="add puzzle file read" />
+    <option name="LAST_COMMIT_MESSAGE" value="add puzzle file read" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

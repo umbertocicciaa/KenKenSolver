@@ -1,5 +1,5 @@
 package risolutore;
-public abstract class Backtracking<P, S> {
+public abstract class Backtracking<P, S> implements RisolviPuzzle{
     protected abstract P primoPuntoDiScelta();
 
     protected abstract P prossimoPuntoDiScelta(P ps);
@@ -34,6 +34,7 @@ public abstract class Backtracking<P, S> {
             this(Integer.MAX_VALUE);
     }
 
+    @Override
     public final void risolvi() { // template method
         P ps = primoPuntoDiScelta();
         S s = primaScelta(ps);
