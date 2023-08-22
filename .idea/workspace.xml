@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="implemented Strategy pattern for multi solver algorithm">
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="finish dfs">
       <change afterPath="$PROJECT_DIR$/src/risolutore/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreDFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreDFS.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +111,7 @@
       <workItem from="1692268762447" duration="3023000" />
       <workItem from="1692563795998" duration="127000" />
       <workItem from="1692563970155" duration="16405000" />
-      <workItem from="1692621054700" duration="192000" />
+      <workItem from="1692621054700" duration="5648000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
@@ -176,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692617282986</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="finish dfs">
+      <option name="closed" value="true" />
+      <created>1692621280303</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1692621280303</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,7 +247,8 @@
     <MESSAGE value="solution fixed" />
     <MESSAGE value="add puzzle file read" />
     <MESSAGE value="implemented Strategy pattern for multi solver algorithm" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented Strategy pattern for multi solver algorithm" />
+    <MESSAGE value="finish dfs" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish dfs" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

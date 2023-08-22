@@ -14,6 +14,8 @@ public class RisolutoreDFS implements RisolviPuzzle {
     private int size;
 
     public RisolutoreDFS(Puzzle puzzle) {
+        if (puzzle == null)
+            throw new NullPointerException();
         this.puzzle = puzzle;
         this.size = puzzle.getSize();
         this.board = new Integer[size][size];
@@ -50,8 +52,6 @@ public class RisolutoreDFS implements RisolviPuzzle {
     }
 
     private boolean solvable(int value, Point index) {
-        int row = index.getX();
-        int col = index.getY();
         Cage cage = puzzle.getPointToCage().get(index);
         int filledPositions = 1;
         boolean cagePositionEqualsOne = false;
@@ -62,7 +62,7 @@ public class RisolutoreDFS implements RisolviPuzzle {
                 cagePositionEqualsOne = true;
         }
         Integer cageTotalWithValue = getCageTotalWithValue(value, cage);
-        if (!presenteInRigaColonna(value, new Point(row, col))) {
+        if (!presenteInRigaColonna(value, index)) {
             if (cageTotalWithValue != null && cageTotalWithValue == cage.getTargetNumber() && filledPositions == cage.getCagePoint().length)
                 return true;
             else if (filledPositions < cage.getCagePoint().length) {
@@ -77,7 +77,7 @@ public class RisolutoreDFS implements RisolviPuzzle {
         return false;
     }
 
-    private Integer getCageTotalWithValue(int value, Cage cage) {
+    private Integer getCageTotalWithValue(Integer value, Cage cage) {
         switch (cage.getCageOperation()) {
             case SUM -> {
                 for (Point p : cage.getCagePoint())

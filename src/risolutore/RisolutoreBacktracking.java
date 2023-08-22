@@ -55,59 +55,65 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     @Override
     protected boolean assegnabile(Integer scelta, Point puntoDiScelta) {
         boolean presente = presenteInRigaColonna(scelta, puntoDiScelta);
-        boolean obbiettivoVerificato = verificaObiettivo(puzzle.getPointToCage().get(puntoDiScelta), scelta);
-        return !presente && obbiettivoVerificato && board[puntoDiScelta.getX()][puntoDiScelta.getY()] == null;
-    }
-
-    private boolean verificaObiettivo(Cage cage, Integer scelta) {
-        List<Integer> valori = new ArrayList<>();
-        Point[] points = cage.getCagePoint();
-        for (Point p : points)
+        Integer cageTotalWithValue = verificaObiettivo(puzzle.getPointToCage().get(puntoDiScelta), scelta);
+        int filledPositions = 1;
+        boolean cagePositionEqualsOne = false;
+        Cage cage=puzzle.getPointToCage().get(puntoDiScelta);
+        for (Point p : cage.getCagePoint()) {
             if (board[p.getX()][p.getY()] != null)
-                valori.add(board[p.getX()][p.getY()]);
-        int target = cage.getTargetNumber();
-        switch (cage.getCageOperation()) {
-            case SUM -> {
-                int sum = 0;
-                for (Integer x : valori)
-                    sum += x;
-                return sum + scelta <= target;
-            }
-            case MUL -> {
-                int mul = 1;
-                for (Integer x : valori)
-                    mul *= x;
-                return mul * scelta <= target;
-            }
-            case SUB -> {
-                Point p1 = points[0], p2 = points[1];
-                Integer v1 = board[p1.getX()][p1.getY()], v2 = board[p2.getX()][p2.getY()];
-                if (v1 == null && v2 == null)
+                filledPositions++;
+            if (board[p.getX()][p.getY()] != null && board[p.getX()][p.getY()] == 1)
+                cagePositionEqualsOne = true;
+        }
+        if (!presente) {
+            if (cageTotalWithValue != null && cageTotalWithValue == cage.getTargetNumber() && filledPositions == cage.getCagePoint().length)
+                return true;
+            else if (filledPositions < cage.getCagePoint().length) {
+                if (cageTotalWithValue != null && cageTotalWithValue < cage.getTargetNumber())
                     return true;
-                if (v1 == null) {
-                    return Math.abs(v2 - scelta) == target;
-                }
-                return Math.abs(v1 - scelta) == target;
-            }
-            case DIV -> {
-                Point p1 = points[0], p2 = points[1];
-                Integer v1 = board[p1.getX()][p1.getY()], v2 = board[p2.getX()][p2.getY()];
-                if (v1 == null && v2 == null)
+                else if (cageTotalWithValue != null && cageTotalWithValue > cage.getTargetNumber() && cage.getCageOperation() == Operator.SUB || cage.getCageOperation() == Operator.DIV)
                     return true;
-                if (v1 == null) {
-                    if (v2 % scelta == 0)
-                        return v2 / scelta == target;
-                    return false;
-                }
-                if (v1 % scelta == 0)
-                    return v1 / scelta == target;
-                return false;
-            }
-            case NONE -> {
-                return scelta == target;
+                else
+                    return (cageTotalWithValue != null && cageTotalWithValue == cage.getTargetNumber() && !cagePositionEqualsOne && cage.getCageOperation() == Operator.MUL);
             }
         }
         return false;
+    }
+
+    private Integer verificaObiettivo(Cage cage, Integer value) {
+        switch (cage.getCageOperation()) {
+            case SUM -> {
+                for (Point p : cage.getCagePoint())
+                    if (board[p.getX()][p.getY()] != null)
+                        value += board[p.getX()][p.getY()];
+                return value;
+            }
+            case SUB -> {
+                for (Point p : cage.getCagePoint()) {
+                    if (board[p.getX()][p.getY()] != null)
+                        value -= board[p.getX()][p.getY()];
+                    return Math.abs(value);
+                }
+            }
+            case MUL -> {
+                for (Point p : cage.getCagePoint()) {
+                    if (board[p.getX()][p.getY()] != null)
+                        value *= board[p.getX()][p.getY()];
+                }
+                return value;
+            }
+            case DIV -> {
+                for (Point p : cage.getCagePoint()) {
+                    if (board[p.getX()][p.getY()] != null && value % board[p.getX()][p.getY()] == 0)
+                        value /= board[p.getX()][p.getY()];
+                    return value;
+                }
+            }
+            case NONE -> {
+                return value;
+            }
+        }
+        return null;
     }
 
     private boolean presenteInRigaColonna(Integer scelta, Point puntoDiScelta) {
