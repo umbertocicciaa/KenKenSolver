@@ -1,12 +1,15 @@
 package griglia;
 
+import risolutore.RisolviPuzzle;
+
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public final class FileOperation {
-
     private FileOperation() {
     }
 
@@ -70,4 +73,30 @@ public final class FileOperation {
             }
         }
     }
+
+    public static void savePuzzle(File f, RisolviPuzzle risolutore) {
+        if (!risolutore.soluzioneTrovata())
+            throw new RuntimeException("La soluzione non è stata trovata, non puoi salvarla");
+        try {
+            BufferedWriter bf = new BufferedWriter(new FileWriter(f));
+            Integer[][] board = risolutore.getBoard();
+            int size = board.length;
+            bf.write("Size: " + Integer.valueOf(size).toString());
+            bf.newLine();
+            for (int i = 0; i < size; ++i) {
+                for (int j = 0; j < size; ++j) {
+                    bf.write(board[i][j].toString());
+                    if (j < size - 1)
+                        bf.write(", ");
+                }
+                bf.newLine();
+            }
+            bf.close();
+        } catch (Exception e) {
+            System.err.println("Error saving file: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
 }

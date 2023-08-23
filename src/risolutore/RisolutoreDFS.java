@@ -10,8 +10,11 @@ import java.util.Arrays;
 public class RisolutoreDFS implements RisolviPuzzle {
     private Puzzle puzzle;
     private Integer[][] board;
+
+    private Integer[][] soluzioneFinale;
     private Point endPoint;
     private int size;
+    private boolean risolto;
 
     public RisolutoreDFS(Puzzle puzzle) {
         if (puzzle == null)
@@ -19,8 +22,20 @@ public class RisolutoreDFS implements RisolviPuzzle {
         this.puzzle = puzzle;
         this.size = puzzle.getSize();
         this.board = new Integer[size][size];
+        soluzioneFinale = new Integer[size][size];
         this.endPoint = new Point(size - 1, size - 1);
     }
+
+    @Override
+    public Integer[][] getBoard() {
+        return soluzioneFinale;
+    }
+
+    @Override
+    public boolean soluzioneTrovata() {
+        return risolto;
+    }
+
 
     @Override
     public void risolvi() {
@@ -29,11 +44,17 @@ public class RisolutoreDFS implements RisolviPuzzle {
 
     private void scriviSoluzione() {
         System.out.println(Arrays.deepToString(board));
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                soluzioneFinale[i][j] = board[i][j];
+            }
+        }
     }
 
     private boolean solveRec(Integer[][] board, Point index) {
         if (board[endPoint.getX()][endPoint.getY()] != null) {
             scriviSoluzione();
+            risolto = true;
             return true;
         }
         for (int i = 1; i <= size; i++) {

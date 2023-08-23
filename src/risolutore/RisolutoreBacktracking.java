@@ -10,8 +10,12 @@ import java.util.*;
 public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     private final Puzzle puzzle;
     private final Integer[][] board;
+
+    private final Integer[][] soluzioneFinale;
+
     private final int size;
     private final Point ultimoPunto;
+    private boolean risolto;
 
     public RisolutoreBacktracking(Puzzle puzzle) {
         // https://www.kenkenpuzzle.com/faq#faq-3 una sola soluzione per problema
@@ -21,7 +25,17 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
         this.puzzle = puzzle;
         this.size = puzzle.getSize();
         board = new Integer[size][size];
+        soluzioneFinale = new Integer[size][size];
         this.ultimoPunto = new Point(size - 1, size - 1);
+    }
+
+    public Integer[][] getBoard() {
+        return soluzioneFinale;
+    }
+
+    @Override
+    public boolean soluzioneTrovata() {
+        return risolto;
     }
 
     @Override
@@ -58,7 +72,7 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
         Integer cageTotalWithValue = verificaObiettivo(puzzle.getPointToCage().get(puntoDiScelta), scelta);
         int filledPositions = 1;
         boolean cagePositionEqualsOne = false;
-        Cage cage=puzzle.getPointToCage().get(puntoDiScelta);
+        Cage cage = puzzle.getPointToCage().get(puntoDiScelta);
         for (Point p : cage.getCagePoint()) {
             if (board[p.getX()][p.getY()] != null)
                 filledPositions++;
@@ -165,6 +179,12 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     @Override
     protected void scriviSoluzione(int nr_sol) {
         String print = Arrays.deepToString(board);
+        for (int i = 0; i < size; ++i) {
+            for (int j = 0; j < size; ++j) {
+                soluzioneFinale[i][j] = board[i][j];
+            }
+        }
+        risolto = true;
         System.out.println(print);
     }
 }
