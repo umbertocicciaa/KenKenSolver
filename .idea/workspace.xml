@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="finish dfs">
-      <change afterPath="$PROJECT_DIR$/src/risolutore/Main.java" afterDir="false" />
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="save">
+      <change afterPath="$PROJECT_DIR$/src/griglia/FileOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/MainRisolvi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreDFS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreDFS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Puzzle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,13 +64,13 @@
       <recent name="risolutore" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.MainRisolvi">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="risolutore.Main" />
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="KenKenSolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="risolutore.*" />
+          <option name="PATTERN" value="main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -83,7 +83,20 @@
       <module name="KenKenSolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="risolutore.*" />
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainRisolvi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.MainRisolvi" />
+      <module name="KenKenSolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,6 +106,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainRisolvi" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.MainFastTest" />
       </list>
@@ -111,7 +125,9 @@
       <workItem from="1692268762447" duration="3023000" />
       <workItem from="1692563795998" duration="127000" />
       <workItem from="1692563970155" duration="16405000" />
-      <workItem from="1692621054700" duration="5648000" />
+      <workItem from="1692621054700" duration="9798000" />
+      <workItem from="1692705510924" duration="1307000" />
+      <workItem from="1692778736773" duration="241000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
@@ -185,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692621280303</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="save">
+      <option name="closed" value="true" />
+      <created>1692695730864</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692695730864</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,7 +272,8 @@
     <MESSAGE value="add puzzle file read" />
     <MESSAGE value="implemented Strategy pattern for multi solver algorithm" />
     <MESSAGE value="finish dfs" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish dfs" />
+    <MESSAGE value="save" />
+    <option name="LAST_COMMIT_MESSAGE" value="save" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>
