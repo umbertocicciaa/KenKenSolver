@@ -3,9 +3,9 @@ package griglia;
 import java.util.Arrays;
 
 public class Cage {
-    private Point[] cagePoint;
-    private int targetNumber;
-    private Operator cageOperation;
+    private final Point[] cagePoint;
+    private final int targetNumber;
+    private final Operator cageOperation;
 
 
     public Point[] getCagePoint() {

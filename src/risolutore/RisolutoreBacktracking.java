@@ -17,7 +17,7 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     private final Point ultimoPunto;
     private boolean risolto;
 
-    public RisolutoreBacktracking(Puzzle puzzle) {
+    public RisolutoreBacktracking(Puzzle puzzle){
         // https://www.kenkenpuzzle.com/faq#faq-3 una sola soluzione per problema
         super(1);
         if (puzzle == null)

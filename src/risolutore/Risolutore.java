@@ -10,6 +10,10 @@ public class Risolutore {
         this.risolviPuzzle = risolviPuzzle;
     }
 
+    public RisolviPuzzle getRisolviPuzzle() {
+        return risolviPuzzle;
+    }
+
     public void risolviKenken() {
         risolviPuzzle.risolvi();
     }
