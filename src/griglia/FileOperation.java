@@ -70,8 +70,6 @@ public final class FileOperation {
     }
 
     public static void savePuzzle(File f, RisolviPuzzle risolutore) throws Exception {
-        if (!risolutore.soluzioneTrovata())
-            throw new RuntimeException("La soluzione non è stata trovata, non puoi salvarla");
         BufferedWriter bf = new BufferedWriter(new FileWriter(f));
         Integer[][] board = risolutore.getBoard();
         int size = board.length;

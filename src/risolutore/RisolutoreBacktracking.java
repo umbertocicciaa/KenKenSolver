@@ -10,14 +10,11 @@ import java.util.*;
 public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     private final Puzzle puzzle;
     private final Integer[][] board;
-
     private final Integer[][] soluzioneFinale;
-
     private final int size;
     private final Point ultimoPunto;
-    private boolean risolto;
 
-    public RisolutoreBacktracking(Puzzle puzzle){
+    public RisolutoreBacktracking(Puzzle puzzle) {
         // https://www.kenkenpuzzle.com/faq#faq-3 una sola soluzione per problema
         super(1);
         if (puzzle == null)
@@ -31,11 +28,6 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
 
     public Integer[][] getBoard() {
         return soluzioneFinale;
-    }
-
-    @Override
-    public boolean soluzioneTrovata() {
-        return risolto;
     }
 
     @Override
@@ -64,6 +56,37 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     @Override
     protected Point ultimoPuntoDiScelta() {
         return ultimoPunto;
+    }
+
+    @Override
+    protected void assegna(Integer scelta, Point puntoDiScelta) {
+        board[puntoDiScelta.getX()][puntoDiScelta.getY()] = scelta;
+    }
+
+    @Override
+    protected void deassegna(Integer scelta, Point puntoDiScelta) {
+        board[puntoDiScelta.getX()][puntoDiScelta.getY()] = null;
+    }
+
+
+    @Override
+    protected Integer ultimaSceltaAssegnataA(Point puntoDiScelta) {
+        return board[puntoDiScelta.getX()][puntoDiScelta.getY()];
+    }
+
+    @Override
+    protected Integer primaScelta(Point ps) {
+        return 1;
+    }
+
+    @Override
+    protected Integer prossimaScelta(Integer integer) {
+        return integer + 1;
+    }
+
+    @Override
+    protected Integer ultimaScelta(Point ps) {
+        return size;
     }
 
     @Override
@@ -142,40 +165,6 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
         return false;
     }
 
-
-    @Override
-    protected void assegna(Integer scelta, Point puntoDiScelta) {
-        board[puntoDiScelta.getX()][puntoDiScelta.getY()] = scelta;
-    }
-
-    @Override
-    protected void deassegna(Integer scelta, Point puntoDiScelta) {
-        board[puntoDiScelta.getX()][puntoDiScelta.getY()] = null;
-    }
-
-
-    @Override
-    protected Integer ultimaSceltaAssegnataA(Point puntoDiScelta) {
-        return board[puntoDiScelta.getX()][puntoDiScelta.getY()];
-    }
-
-    @Override
-    protected Integer primaScelta(Point ps) {
-        if (puzzle.getPointToCage().get(ps).getCageOperation() == Operator.NONE)
-            return puzzle.getPointToCage().get(ps).getTargetNumber();
-        return 1;
-    }
-
-    @Override
-    protected Integer prossimaScelta(Integer integer) {
-        return integer + 1;
-    }
-
-    @Override
-    protected Integer ultimaScelta(Point ps) {
-        return size;
-    }
-
     @Override
     protected void scriviSoluzione(int nr_sol) {
         String print = Arrays.deepToString(board);
@@ -184,7 +173,6 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
                 soluzioneFinale[i][j] = board[i][j];
             }
         }
-        risolto = true;
         System.out.println(print);
     }
 }

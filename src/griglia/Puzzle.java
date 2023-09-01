@@ -1,6 +1,5 @@
 package griglia;
 
-import java.io.File;
 import java.util.*;
 
 public class Puzzle {

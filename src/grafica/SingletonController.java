@@ -3,16 +3,16 @@ package grafica;
 import griglia.Puzzle;
 import risolutore.Risolutore;
 import risolutore.RisolutoreBacktracking;
-import risolutore.RisolutoreDFS;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public enum SingletonController implements ActionListener {
     CONTROLLER;
     private GestoreFinestra gestoreFinestra;
-    private FinestraRisolvi finestraRisolvi;
     private Puzzle puzzle;
 
     public Puzzle getPuzzle() {
@@ -29,11 +29,54 @@ public enum SingletonController implements ActionListener {
         gestoreFinestra.getRisolvi().addActionListener(this);
     }
 
-    public void setFinestraRisolvi(FinestraRisolvi finestraRisolvi) {
-        this.finestraRisolvi = finestraRisolvi;
-        finestraRisolvi.getRisolviBack().addActionListener(this);
-        finestraRisolvi.getRisolviDFS().addActionListener(this);
+    public void setDocumentListenerText() {
+        for (int i = 0; i < gestoreFinestra.getTextGriglia().length; ++i) {
+            for (int j = 0; j < gestoreFinestra.getTextGriglia()[i].length; ++j) {
+                gestoreFinestra.getTextGriglia()[i][j].getDocument().addDocumentListener(new MyDocumentListener(i, j));
+            }
+        }
     }
+
+    private class MyDocumentListener implements DocumentListener {
+
+        private int i, j;
+
+        public MyDocumentListener(int i, int j) {
+            this.i = i;
+            this.j = j;
+        }
+
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            if (!gestoreFinestra.getTextGriglia()[i][j].getText().matches("\\d"))
+                warning();
+            else if (gestoreFinestra.getTextGriglia()[i][j].getText().matches("\\d") && (Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText()) < 1 ||
+                    Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText()) > puzzle.getSize()))
+                warning();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            if (!gestoreFinestra.getTextGriglia()[i][j].getText().matches("\\d"))
+                warning();
+            else if (gestoreFinestra.getTextGriglia()[i][j].getText().matches("\\d") && (Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText()) < 1 ||
+                    Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText()) > puzzle.getSize()))
+                warning();
+
+        }
+
+        private void warning() {
+            JOptionPane.showMessageDialog(null,
+                    "Error: Inserisci numeri tra 1 e la dimensione del puzzle", "Messaggio errore",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -46,17 +89,11 @@ public enum SingletonController implements ActionListener {
                 }
             }
         } else if (e.getSource() == gestoreFinestra.getRisolvi()) {
-            new FinestraRisolvi();
-        } else if (e.getSource() == finestraRisolvi.getRisolviDFS()) {
-            Risolutore risolutore = new Risolutore(new RisolutoreDFS(puzzle));
-            risolutore.risolviKenken();
-            new FinestraSoluzione(risolutore.getRisolviPuzzle().getBoard());
-            finestraRisolvi.dispose();
-        } else if (e.getSource() == finestraRisolvi.getRisolviBack()) {
-            Risolutore risolutore = new Risolutore(new RisolutoreBacktracking(puzzle));
-            risolutore.risolviKenken();
-            new FinestraSoluzione(risolutore.getRisolviPuzzle().getBoard());
-            finestraRisolvi.dispose();
+            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    new Caricamento(new Risolutore(new RisolutoreBacktracking(puzzle)));
+                }
+            });
         }
     }
 }

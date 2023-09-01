@@ -1,7 +1,5 @@
 package risolutore;
 
-import griglia.Puzzle;
-
 public class Risolutore {
     private RisolviPuzzle risolviPuzzle;
 

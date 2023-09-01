@@ -13,7 +13,23 @@ public class FinestraSoluzione extends JFrame {
         this.size = soluzione.length;
         createWindow();
         createPuzzleWindow(soluzione);
+        centra();
         this.setVisible(true);
+    }
+
+    private void centra() {
+        int larghezzaFinestra = 500;
+        int altezzaFinestra = 500;
+
+        this.setSize(larghezzaFinestra, altezzaFinestra);
+
+        Dimension dimensioniSchermo = Toolkit.getDefaultToolkit().getScreenSize();
+        int larghezzaSchermo = dimensioniSchermo.width;
+        int altezzaSchermo = dimensioniSchermo.height;
+
+        int x = (larghezzaSchermo - larghezzaFinestra) / 2;
+        int y = (altezzaSchermo - altezzaFinestra) / 2;
+        this.setLocation(x, y);
     }
 
     private void createPuzzleWindow(Integer[][] soluzione) {
@@ -23,8 +39,8 @@ public class FinestraSoluzione extends JFrame {
             for (int j = 0; j < size; ++j) {
                 label[i][j] = new JLabel("", SwingConstants.CENTER);
                 pannelli[i][j] = new JPanel(new BorderLayout());
-                label[i][j].setText("" + soluzione[i][j]);
-                pannelli[i][j].setBackground(GestoreFinestra.PuzzleCaricato.getColor(i, j));
+                label[i][j].setText("" + soluzione[size - i - 1][j]);
+                pannelli[i][j].setBackground(GestoreFinestra.PuzzleCaricato.getColor(size - i - 1, j));
                 pannelli[i][j].add(label[i][j], BorderLayout.CENTER);
                 gridPanel.add(pannelli[i][j], i, j);
             }
@@ -35,7 +51,6 @@ public class FinestraSoluzione extends JFrame {
         gridPanel = new JPanel(new GridLayout(size, size));
         this.add(gridPanel);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setSize(500, 500);
     }
 
 }

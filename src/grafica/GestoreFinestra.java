@@ -88,6 +88,7 @@ public class GestoreFinestra extends GestoreStato {
             risolvi.setEnabled(true);
             createPanel();
             setPuzzleOnPanel();
+            singletonController.setDocumentListenerText();
             pannelloPrincipale.repaint();
             pannelloPrincipale.revalidate();
         }
@@ -111,15 +112,15 @@ public class GestoreFinestra extends GestoreStato {
                 colori.put(primo, color);
                 int x = primo.getX();
                 int y = primo.getY();
-                griglia[x][y].add(textArea, BorderLayout.NORTH);
-                griglia[x][y].setBackground(color);
-                textGriglia[x][y].setBackground(color);
+                griglia[size - x - 1][y].add(textArea, BorderLayout.NORTH);
+                griglia[size - x - 1][y].setBackground(color);
+                textGriglia[size - x - 1][y].setBackground(color);
                 while (points.hasNext()) {
                     Point point = points.next();
                     x = point.getX();
                     y = point.getY();
-                    griglia[x][y].setBackground(color);
-                    textGriglia[x][y].setBackground(color);
+                    griglia[size - x - 1][y].setBackground(color);
+                    textGriglia[size - x - 1][y].setBackground(color);
                     colori.put(point, color);
                 }
             }
@@ -204,15 +205,12 @@ public class GestoreFinestra extends GestoreStato {
             cancella = new JButton("Cancella tutto");
             cancella.setEnabled(false);
 
-
             controllo = new JCheckBox("Abilita controllo vincoli");
             controllo.setEnabled(false);
-
 
             command.add(risolvi);
             command.add(controllo);
             command.add(cancella);
-
 
             frame.add(pannelloPrincipale);
         }
@@ -221,8 +219,11 @@ public class GestoreFinestra extends GestoreStato {
             frame = new JFrame();
             pannelloPrincipale = new JPanel();
             pannelloPrincipale.setLayout(new BorderLayout());
-
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            centra();
+        }
+
+        private void centra() {
             int larghezzaFinestra = 500;
             int altezzaFinestra = 500;
 
@@ -235,7 +236,6 @@ public class GestoreFinestra extends GestoreStato {
             int x = (larghezzaSchermo - larghezzaFinestra) / 2;
             int y = (altezzaSchermo - altezzaFinestra) / 2;
             frame.setLocation(x, y);
-
         }
 
         @Override
