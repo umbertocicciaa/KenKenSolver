@@ -1,5 +1,6 @@
 package grafica;
 
+import giocare.Gioco;
 import griglia.*;
 import griglia.Point;
 
@@ -9,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class GestoreFinestra extends GestoreStato {
@@ -18,11 +21,13 @@ public class GestoreFinestra extends GestoreStato {
     private JButton risolvi;
     private JCheckBox controllo;
     private JButton cancella;
+    private JButton submit;
     private JPanel[][] griglia;
     private JTextField[][] textGriglia;
     private JMenuItem load;
     private JMenuItem save;
     private JMenuItem exit;
+    private JMenuItem help;
     private SingletonController singletonController;
     private final Stato INIT = new Init();
 
@@ -40,6 +45,10 @@ public class GestoreFinestra extends GestoreStato {
         return controllo;
     }
 
+    public JButton getSubmit() {
+        return submit;
+    }
+
     public JButton getCancella() {
         return cancella;
     }
@@ -54,12 +63,12 @@ public class GestoreFinestra extends GestoreStato {
 
     public class PuzzleCaricato implements Stato {
         private int size;
-
         private static Map<Point, Color> colori = new HashMap<>();
 
         public PuzzleCaricato() {
             size = singletonController.getPuzzle().getSize();
             frame.setTitle("Puzzle " + size + " x " + size);
+            singletonController.setPlayboard(new Gioco());
         }
 
         private void createPanel() {
@@ -86,16 +95,30 @@ public class GestoreFinestra extends GestoreStato {
             controllo.setEnabled(true);
             cancella.setEnabled(true);
             risolvi.setEnabled(true);
+            submit.setEnabled(true);
+            save.setEnabled(true);
             createPanel();
             setPuzzleOnPanel();
             singletonController.setDocumentListenerText();
-            pannelloPrincipale.repaint();
-            pannelloPrincipale.revalidate();
+            try {
+                FileOperation.openOnBoard();
+            } catch (FileNotFoundException exc) {
+                exc.printStackTrace();
+            }
+            frame.revalidate();
+            frame.repaint();
+
         }
 
         @Override
         public void exit() {
             pannelloPrincipale.remove(panelloGriglia);
+            risolvi.setEnabled(false);
+            controllo.setEnabled(false);
+            cancella.setEnabled(false);
+            risolvi.setEnabled(false);
+            submit.setEnabled(false);
+            save.setEnabled(false);
         }
 
         private void setPuzzleOnPanel() {
@@ -173,6 +196,7 @@ public class GestoreFinestra extends GestoreStato {
         public void entry() {
             createWindow();
             createButton();
+            frame.pack();
             frame.setVisible(true);
         }
 
@@ -180,6 +204,12 @@ public class GestoreFinestra extends GestoreStato {
             JMenuBar bar = new JMenuBar();
             JMenu file = new JMenu("File");
             bar.add(file);
+
+            JMenu helpM = new JMenu("Help");
+            help = new JMenuItem("Help");
+            helpM.add(help);
+            help.addActionListener(this);
+            bar.add(helpM);
 
             load = new JMenuItem("Open");
             save = new JMenuItem("Save");
@@ -202,15 +232,21 @@ public class GestoreFinestra extends GestoreStato {
             risolvi = new JButton("Risolvi");
             risolvi.setEnabled(false);
 
+            submit = new JButton("Invia soluzione");
+            submit.setEnabled(false);
+
             cancella = new JButton("Cancella tutto");
             cancella.setEnabled(false);
 
             controllo = new JCheckBox("Abilita controllo vincoli");
             controllo.setEnabled(false);
 
+            save.setEnabled(false);
+
             command.add(risolvi);
             command.add(controllo);
             command.add(cancella);
+            command.add(submit);
 
             frame.add(pannelloPrincipale);
         }
@@ -249,18 +285,40 @@ public class GestoreFinestra extends GestoreStato {
                     int response = fileChooser.showOpenDialog(null); //select file to open
                     if (response == JFileChooser.APPROVE_OPTION) {
                         file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                        Puzzle puzzle = FileOperation.createPuzzleFromFile(file);
+                        singletonController.setFile(file);
+                        singletonController.setPuzzle(puzzle);
+                        transition(new PuzzleCaricato());
                     }
-                    Puzzle puzzle = FileOperation.createPuzzleFromFile(file);
-                    singletonController.setPuzzle(puzzle);
-                    transition(new PuzzleCaricato());
 
                 } catch (FileNotFoundException exception) {
+                    exception.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Errore caricamento file: formato errato", "File errato", JOptionPane.ERROR_MESSAGE);
                 } catch (Exception exception) {
+                    exception.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Errore generico", "Errore generico", JOptionPane.ERROR_MESSAGE);
                 }
             } else if (e.getSource() == save) {
+                JFileChooser fileChooser = new JFileChooser();
+                File file;
+                int response = fileChooser.showSaveDialog(null);
+                if (response == JFileChooser.APPROVE_OPTION) {
+                    file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                    try {
+                        singletonController.savingFile(file);
+                        JOptionPane.showMessageDialog(null, "File salvato correttamente!");
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "Errore salvataggio file.");
+                    }
+                }
 
+
+            } else if (e.getSource() == help) {
+                JOptionPane.showMessageDialog(null, "Questo software risolve il gioco ufficiale kenken.\n" +
+                        "Ogni puzzle ha una sola soluzione(vedi sito ufficiale)\nRegole:\npuoi inserire i numeri da 1 fino alla dimensione del puzzle;\n" +
+                        "puoi inserire un numero se non è gia presente nella stessa riga o colonna;\n" +
+                        "per vincere il totale all'interno di un blocco deve essere ottenuto attraverso l'operazione aritmetica raffigurata tra i numeri inseriti nel blocco", "Kenken puzzle", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
