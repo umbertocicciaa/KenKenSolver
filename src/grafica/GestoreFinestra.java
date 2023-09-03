@@ -224,7 +224,6 @@ public class GestoreFinestra extends GestoreStato {
             file.add(exit);
 
             frame.setJMenuBar(bar);
-
             JPanel command = new JPanel();
 
             pannelloPrincipale.add(command, BorderLayout.SOUTH);
@@ -248,7 +247,7 @@ public class GestoreFinestra extends GestoreStato {
             command.add(cancella);
             command.add(submit);
 
-            frame.add(pannelloPrincipale);
+            frame.setContentPane(pannelloPrincipale);
         }
 
         private void createWindow() {

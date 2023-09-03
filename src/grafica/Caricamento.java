@@ -51,7 +51,7 @@ public class Caricamento extends JFrame {
 
         @Override
         protected void process(List<Void> chunks) {
-            bar.setValue(bar.getValue() + 1);
+            bar.setValue(bar.getValue()+1);
         }
 
         @Override

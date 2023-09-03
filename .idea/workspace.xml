@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="saving">
-      <change afterPath="$PROJECT_DIR$/src/giocare/Gioco.java" afterDir="false" />
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="added saving; improved mediator; now playable puzzle;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/giocare/Gioco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/giocare/Gioco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/Caricamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/Caricamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/FinestraSoluzione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraSoluzione.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grafica/GestoreFinestra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/GestoreFinestra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grafica/SingletonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/SingletonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/FileOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/FileOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/Backtracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/Backtracking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +156,7 @@
       <workItem from="1692705510924" duration="1307000" />
       <workItem from="1692778736773" duration="11533000" />
       <workItem from="1693474046834" duration="28011000" />
-      <workItem from="1693565995897" duration="38377000" />
+      <workItem from="1693565995897" duration="51572000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
@@ -268,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693599730850</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added saving; improved mediator; now playable puzzle;">
+      <option name="closed" value="true" />
+      <created>1693665608206</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1693665608206</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -336,7 +346,8 @@
     <MESSAGE value="implemented save&#10;deep copied solution&#10;improved strategy interface" />
     <MESSAGE value="build gui&#10;state gui&#10;mediator gui model&#10;singleton mediator" />
     <MESSAGE value="saving" />
-    <option name="LAST_COMMIT_MESSAGE" value="saving" />
+    <MESSAGE value="added saving; improved mediator; now playable puzzle;" />
+    <option name="LAST_COMMIT_MESSAGE" value="added saving; improved mediator; now playable puzzle;" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

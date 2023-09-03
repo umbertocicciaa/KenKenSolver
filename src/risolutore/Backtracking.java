@@ -27,11 +27,11 @@ public abstract class Backtracking<P, S> implements RisolviPuzzle{
     private int num_max_soluzioni, nr_soluzione = 0;
 
     public Backtracking(int num_max_soluzioni) {
-            this.num_max_soluzioni = num_max_soluzioni;
-        }
+        this.num_max_soluzioni = num_max_soluzioni;
+    }
 
     public Backtracking() {
-            this(Integer.MAX_VALUE);
+        this(Integer.MAX_VALUE);
     }
 
     @Override

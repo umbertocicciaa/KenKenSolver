@@ -92,66 +92,83 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     @Override
     protected boolean assegnabile(Integer scelta, Point puntoDiScelta) {
         boolean presente = presenteInRigaColonna(scelta, puntoDiScelta);
-        Integer cageTotalWithValue = verificaObiettivo(puzzle.getPointToCage().get(puntoDiScelta), scelta);
-        int filledPositions = 1;
-        boolean cagePositionEqualsOne = false;
         Cage cage = puzzle.getPointToCage().get(puntoDiScelta);
-        for (Point p : cage.getCagePoint()) {
-            if (board[p.getX()][p.getY()] != null)
-                filledPositions++;
-            if (board[p.getX()][p.getY()] != null && board[p.getX()][p.getY()] == 1)
-                cagePositionEqualsOne = true;
-        }
-        if (!presente) {
-            if (cageTotalWithValue != null && cageTotalWithValue == cage.getTargetNumber() && filledPositions == cage.getCagePoint().length)
-                return true;
-            else if (filledPositions < cage.getCagePoint().length) {
-                if (cageTotalWithValue != null && cageTotalWithValue < cage.getTargetNumber())
-                    return true;
-                else if (cageTotalWithValue != null && cageTotalWithValue > cage.getTargetNumber() && cage.getCageOperation() == Operator.SUB || cage.getCageOperation() == Operator.DIV)
-                    return true;
-                else
-                    return (cageTotalWithValue != null && cageTotalWithValue == cage.getTargetNumber() && !cagePositionEqualsOne && cage.getCageOperation() == Operator.MUL);
-            }
-        }
-        return false;
+        boolean inseribile = inseribileSceltaPoint(cage, scelta);
+        return !presente && inseribile;
     }
 
-    private Integer verificaObiettivo(Cage cage, Integer value) {
+    private boolean inseribileSceltaPoint(Cage cage, Integer scelta) {
+        int tot = scelta, assegnati = 1;
+        Point[] points = cage.getCagePoint();
         switch (cage.getCageOperation()) {
             case SUM -> {
-                for (Point p : cage.getCagePoint())
-                    if (board[p.getX()][p.getY()] != null)
-                        value += board[p.getX()][p.getY()];
-                return value;
-            }
-            case SUB -> {
-                for (Point p : cage.getCagePoint()) {
-                    if (board[p.getX()][p.getY()] != null)
-                        value -= board[p.getX()][p.getY()];
-                    return Math.abs(value);
+                for (Point point : points) {
+                    int x = point.getX(), y = point.getY();
+                    if (board[x][y] != null) {
+                        tot += board[x][y];
+                        assegnati++;
+                    }
                 }
+                if (tot > cage.getTargetNumber())
+                    return false;
+                if (assegnati == points.length && tot != cage.getTargetNumber())
+                    return false;
             }
             case MUL -> {
-                for (Point p : cage.getCagePoint()) {
-                    if (board[p.getX()][p.getY()] != null)
-                        value *= board[p.getX()][p.getY()];
+                for (Point point : points) {
+                    int x = point.getX(), y = point.getY();
+                    if (board[x][y] != null) {
+                        tot *= board[x][y];
+                        assegnati++;
+                    }
                 }
-                return value;
+                if (tot > cage.getTargetNumber())
+                    return false;
+                if (assegnati == points.length && tot != cage.getTargetNumber())
+                    return false;
+            }
+            case SUB -> {
+                for (Point point : points) {
+                    int x = point.getX(), y = point.getY();
+                    if (board[x][y] != null) {
+                        if (tot < board[x][y])
+                            tot = board[x][y] - tot;
+                        else
+                            tot -= board[x][y];
+                        assegnati++;
+                    }
+                    if (assegnati == points.length && tot != cage.getTargetNumber()) {
+                        return false;
+                    }
+                }
             }
             case DIV -> {
-                for (Point p : cage.getCagePoint()) {
-                    if (board[p.getX()][p.getY()] != null && value % board[p.getX()][p.getY()] == 0)
-                        value /= board[p.getX()][p.getY()];
-                    return value;
+                double t = (double) tot;
+                for (Point point : points) {
+                    int x = point.getX(), y = point.getY();
+                    if (board[x][y] != null) {
+                        int number = board[x][y];
+                        double v = (double) number;
+                        if (t < v) {
+                            t = v / t;
+                        } else {
+                            t /= v;
+                        }
+                        assegnati++;
+                    }
+                } // for
+                if (assegnati == points.length && t != (double) cage.getTargetNumber()) {
+                    return false;
                 }
             }
             case NONE -> {
-                return value;
+                if (scelta != cage.getTargetNumber())
+                    return false;
             }
         }
-        return null;
+        return true;
     }
+
 
     private boolean presenteInRigaColonna(Integer scelta, Point puntoDiScelta) {
         int riga = puntoDiScelta.getX();
@@ -169,9 +186,7 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     protected void scriviSoluzione(int nr_sol) {
         String print = Arrays.deepToString(board);
         for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                soluzioneFinale[i][j] = board[i][j];
-            }
+            System.arraycopy(board[i], 0, soluzioneFinale[i], 0, size);
         }
         System.out.println(print);
     }

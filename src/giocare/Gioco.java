@@ -49,11 +49,16 @@ public class Gioco {
             Operator operator = cage.getCageOperation();
             int target = cage.getTargetNumber();
             int total = 0;
+            double tot = 0;
             int max = getMax(cage);
             if (operator == Operator.MUL)
                 total = 1;
-            if (operator == Operator.SUB || operator == Operator.DIV)
+            if (operator == Operator.SUB)
                 total = max;
+            if (operator == Operator.DIV) {
+                total = max;
+                tot = (double) total;
+            }
 
             for (Point point : cage.getCagePoint()) {
                 int x = point.getX();
@@ -72,15 +77,18 @@ public class Gioco {
                     }
                     case DIV -> {
                         if (board[x][y] != max)
-                            total /= board[x][y];
+                            tot /= board[x][y];
                     }
                 }
-                System.out.println(operator + " " + total + " " + target + " " + x + " " + y + " " + board[x][y] + " " + max);
+                System.out.println("op: "+operator + " tot: " + total + "target:  " + target + "x:  " + x + "y:  " + y + " numero: " + board[x][y] + " max: " + max);
             }
 
-
-            if (total != target)
+            if (total != target && operator != Operator.DIV)
                 return false;
+
+            if (tot != (double) target && operator == Operator.DIV)
+                return false;
+
         }
         return true;
     }

@@ -14,6 +14,7 @@ public class FinestraSoluzione extends JFrame {
         createWindow();
         createPuzzleWindow(soluzione);
         centra();
+        this.setContentPane(gridPanel);
         this.setVisible(true);
     }
 
