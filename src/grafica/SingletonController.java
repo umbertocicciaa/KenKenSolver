@@ -22,15 +22,12 @@ public enum SingletonController implements ActionListener {
     private Puzzle puzzle;
     private Gioco gioco;
     private int size;
-
     private File fileOpened;
+
+    private boolean buttonPressed;
 
     public void setFile(File file) {
         this.fileOpened = file;
-    }
-
-    public File getFileOpened() {
-        return fileOpened;
     }
 
     public Puzzle getPuzzle() {
@@ -38,8 +35,7 @@ public enum SingletonController implements ActionListener {
     }
 
     public void setPuzzle(Puzzle puzzle) {
-        if (puzzle == null)
-            throw new NullPointerException();
+        if (puzzle == null) throw new NullPointerException();
         this.size = puzzle.getSize();
         this.puzzle = puzzle;
     }
@@ -53,11 +49,11 @@ public enum SingletonController implements ActionListener {
         gestoreFinestra.getCancella().addActionListener(this);
         gestoreFinestra.getRisolvi().addActionListener(this);
         gestoreFinestra.getSubmit().addActionListener(this);
+        gestoreFinestra.getControllo().addActionListener(this);
     }
 
     public void setPlayboard(Gioco gioco) {
-        if (gioco == null)
-            throw new NullPointerException();
+        if (gioco == null) throw new NullPointerException();
         this.gioco = gioco;
     }
 
@@ -75,7 +71,7 @@ public enum SingletonController implements ActionListener {
 
     private class MyDocumentListener implements DocumentListener {
 
-        private int i, j;
+        private final int i, j;
 
         public MyDocumentListener(int i, int j) {
             this.i = i;
@@ -89,7 +85,7 @@ public enum SingletonController implements ActionListener {
 
         @Override
         public void removeUpdate(DocumentEvent e) {
-            if (gestoreFinestra.getTextGriglia()[i][j].getText().equals(""))
+            if (gestoreFinestra.getTextGriglia()[i][j].getText().isEmpty())
                 setNumberInBoard(gioco.getSize() - i - 1, j, null);
             System.out.println(Arrays.deepToString(gioco.getBoard()));
         }
@@ -100,25 +96,28 @@ public enum SingletonController implements ActionListener {
         }
 
         private void controlNumber() {
-            if (!gestoreFinestra.getTextGriglia()[i][j].getText().matches("\\d"))
-                warning();
-            else if (gestoreFinestra.getTextGriglia()[i][j].getText().matches("\\d") && (Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText()) < 1 ||
-                    Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText()) > puzzle.getSize()))
+            if (!gestoreFinestra.getTextGriglia()[i][j].getText().matches("\\d")) warning();
+            else if (gestoreFinestra.getTextGriglia()[i][j].getText().matches("\\d") && (Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText()) < 1 || Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText()) > puzzle.getSize()))
                 warning();
             else {
                 Integer x = Integer.parseInt(gestoreFinestra.getTextGriglia()[i][j].getText());
                 setNumberInBoard(gioco.getSize() - i - 1, j, x);
+                if (buttonPressed) {
+                    verificaInseribilita();
+                }
             }
             System.out.println(Arrays.deepToString(gioco.getBoard()));
         }
 
         private void warning() {
-            JOptionPane.showMessageDialog(null,
-                    "Error: Inserisci numeri tra 1 e la dimensione del puzzle", "Messaggio errore",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error: Inserisci numeri tra 1 e la dimensione del puzzle", "Messaggio errore", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+
+    public void verificaInseribilita() {
+        gioco.inseribile();
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -130,17 +129,16 @@ public enum SingletonController implements ActionListener {
                 }
             }
         } else if (e.getSource() == gestoreFinestra.getRisolvi()) {
-            javax.swing.SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    new Caricamento(new Risolutore(new RisolutoreBacktracking(puzzle)));
-                }
-            });
+            javax.swing.SwingUtilities.invokeLater(() -> new Caricamento(new Risolutore(new RisolutoreBacktracking(puzzle))));
         } else if (e.getSource() == gestoreFinestra.getSubmit()) {
             boolean haiVinto = gioco.getVittoria();
-            if (haiVinto)
-                JOptionPane.showMessageDialog(null, "Hai vinto!!!", "Complimenti", JOptionPane.PLAIN_MESSAGE);
-            else
-                JOptionPane.showMessageDialog(null, "Prova ancora...", "Hai Sbagliato", JOptionPane.PLAIN_MESSAGE);
+            if (haiVinto) JOptionPane.showMessageDialog(null, "Hai vinto!!!", "Complimenti", JOptionPane.PLAIN_MESSAGE);
+            else JOptionPane.showMessageDialog(null, "Prova ancora...", "Hai Sbagliato", JOptionPane.PLAIN_MESSAGE);
+        } else if (gestoreFinestra.getControllo().isSelected()) {
+            buttonPressed = true;
+            verificaInseribilita();
+        } else if (!gestoreFinestra.getControllo().isSelected()) {
+            buttonPressed = false;
         }
     }
 
@@ -149,7 +147,7 @@ public enum SingletonController implements ActionListener {
     }
 
     public void openBoard() throws FileNotFoundException {
-        FileOperation.openOnBoard();
+        FileOperation.openOnBoard(fileOpened);
     }
 
 

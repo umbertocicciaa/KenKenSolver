@@ -5,9 +5,7 @@ import java.awt.*;
 
 public class FinestraSoluzione extends JFrame {
     private JPanel gridPanel;
-    private JPanel[][] pannelli;
-    private JLabel[][] label;
-    private int size;
+    private final int size;
 
     public FinestraSoluzione(Integer[][] soluzione) {
         this.size = soluzione.length;
@@ -34,8 +32,8 @@ public class FinestraSoluzione extends JFrame {
     }
 
     private void createPuzzleWindow(Integer[][] soluzione) {
-        label = new JLabel[size][size];
-        pannelli = new JPanel[size][size];
+        JLabel[][] label = new JLabel[size][size];
+        JPanel[][] pannelli = new JPanel[size][size];
         for (int i = 0; i < size; ++i) {
             for (int j = 0; j < size; ++j) {
                 label[i][j] = new JLabel("", SwingConstants.CENTER);

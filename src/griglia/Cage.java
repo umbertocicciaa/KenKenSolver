@@ -35,15 +35,11 @@ public class Cage {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Cage)) return false;
-
-        Cage cage = (Cage) o;
+        if (!(o instanceof Cage cage)) return false;
 
         if (targetNumber != cage.targetNumber) return false;
         if (cageOperation != cage.cageOperation) return false;
-        if (!Arrays.equals(cagePoint, cage.cagePoint)) return false;
-
-        return true;
+        return Arrays.equals(cagePoint, cage.cagePoint);
     }
 
     @Override

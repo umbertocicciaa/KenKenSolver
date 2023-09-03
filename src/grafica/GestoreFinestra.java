@@ -10,8 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 public class GestoreFinestra extends GestoreStato {
@@ -28,11 +26,10 @@ public class GestoreFinestra extends GestoreStato {
     private JMenuItem save;
     private JMenuItem exit;
     private JMenuItem help;
-    private SingletonController singletonController;
-    private final Stato INIT = new Init();
+    private final SingletonController singletonController;
 
     public GestoreFinestra() {
-        transition(INIT);
+        transition(new Init());
         singletonController = SingletonController.CONTROLLER;
         singletonController.setGestoreFinestra(this);
     }
@@ -53,17 +50,13 @@ public class GestoreFinestra extends GestoreStato {
         return cancella;
     }
 
-    public JPanel[][] getGriglia() {
-        return griglia;
-    }
-
     public JTextField[][] getTextGriglia() {
         return textGriglia;
     }
 
     public class PuzzleCaricato implements Stato {
-        private int size;
-        private static Map<Point, Color> colori = new HashMap<>();
+        private final int size;
+        private final static Map<Point, Color> colori = new HashMap<>();
 
         public PuzzleCaricato() {
             size = singletonController.getPuzzle().getSize();
@@ -101,13 +94,13 @@ public class GestoreFinestra extends GestoreStato {
             setPuzzleOnPanel();
             singletonController.setDocumentListenerText();
             try {
-                FileOperation.openOnBoard();
-            } catch (FileNotFoundException exc) {
+                singletonController.openBoard();
+            } catch (Exception exc) {
                 exc.printStackTrace();
             }
+            frame.pack();
             frame.revalidate();
             frame.repaint();
-
         }
 
         @Override
@@ -115,6 +108,7 @@ public class GestoreFinestra extends GestoreStato {
             pannelloPrincipale.remove(panelloGriglia);
             risolvi.setEnabled(false);
             controllo.setEnabled(false);
+            controllo.setSelected(false);
             cancella.setEnabled(false);
             risolvi.setEnabled(false);
             submit.setEnabled(false);
@@ -130,18 +124,18 @@ public class GestoreFinestra extends GestoreStato {
                 String op = getStringByOP(operator);
                 Iterator<Point> points = Arrays.stream(cage.getCagePoint()).iterator();
                 Point primo = points.next();
-                JLabel textArea = new JLabel("" + target + " " + op);
+                JLabel textArea = new JLabel(target + " " + op);
                 textArea.setBackground(color);
                 colori.put(primo, color);
-                int x = primo.getX();
-                int y = primo.getY();
+                int x = primo.x();
+                int y = primo.y();
                 griglia[size - x - 1][y].add(textArea, BorderLayout.NORTH);
                 griglia[size - x - 1][y].setBackground(color);
                 textGriglia[size - x - 1][y].setBackground(color);
                 while (points.hasNext()) {
                     Point point = points.next();
-                    x = point.getX();
-                    y = point.getY();
+                    x = point.x();
+                    y = point.y();
                     griglia[size - x - 1][y].setBackground(color);
                     textGriglia[size - x - 1][y].setBackground(color);
                     colori.put(point, color);
@@ -279,7 +273,7 @@ public class GestoreFinestra extends GestoreStato {
                 System.exit(1);
             } else if (e.getSource() == load) {
                 try {
-                    File file = null;
+                    File file;
                     JFileChooser fileChooser = new JFileChooser();
                     int response = fileChooser.showOpenDialog(null); //select file to open
                     if (response == JFileChooser.APPROVE_OPTION) {
@@ -290,7 +284,7 @@ public class GestoreFinestra extends GestoreStato {
                         transition(new PuzzleCaricato());
                     }
 
-                } catch (FileNotFoundException exception) {
+                } catch (FileNotFoundException | RuntimeException exception) {
                     exception.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Errore caricamento file: formato errato", "File errato", JOptionPane.ERROR_MESSAGE);
                 } catch (Exception exception) {
@@ -312,12 +306,14 @@ public class GestoreFinestra extends GestoreStato {
                     }
                 }
 
-
             } else if (e.getSource() == help) {
-                JOptionPane.showMessageDialog(null, "Questo software risolve il gioco ufficiale kenken.\n" +
-                        "Ogni puzzle ha una sola soluzione(vedi sito ufficiale)\nRegole:\npuoi inserire i numeri da 1 fino alla dimensione del puzzle;\n" +
-                        "puoi inserire un numero se non è gia presente nella stessa riga o colonna;\n" +
-                        "per vincere il totale all'interno di un blocco deve essere ottenuto attraverso l'operazione aritmetica raffigurata tra i numeri inseriti nel blocco", "Kenken puzzle", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, """
+                        Questo software risolve il gioco ufficiale kenken.
+                        Ogni puzzle ha una sola soluzione(vedi sito ufficiale)
+                        Regole:
+                        puoi inserire i numeri da 1 fino alla dimensione del puzzle;
+                        puoi inserire un numero se non è gia presente nella stessa riga o colonna;
+                        per vincere il totale all'interno di un blocco deve essere ottenuto attraverso l'operazione aritmetica raffigurata tra i numeri inseriti nel blocco""", "Kenken puzzle", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }

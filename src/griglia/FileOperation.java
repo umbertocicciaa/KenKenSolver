@@ -2,7 +2,6 @@ package griglia;
 
 import giocare.Gioco;
 import grafica.SingletonController;
-import risolutore.RisolviPuzzle;
 
 import javax.swing.*;
 import java.io.*;
@@ -18,14 +17,15 @@ public final class FileOperation {
     private static final SingletonController singletonController = SingletonController.CONTROLLER;
 
     public static Puzzle createPuzzleFromFile(File f) throws FileNotFoundException {
-        Puzzle puzzle = null;
+        Puzzle puzzle;
         Scanner scanner = new Scanner(f);
         int boardSize = scanner.nextInt();
         Puzzle.PuzzleBuilder builder = new Puzzle.PuzzleBuilder(boardSize);
         scanner.nextLine();
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            if (!line.equalsIgnoreCase("separator")) {
+            String trimmed = line.trim();
+            if (!trimmed.equalsIgnoreCase("separator")) {
                 String[] arr = line.split(" ");
                 int target = Integer.parseInt(arr[0]);
                 Operator operator = getOperator(arr[1].toLowerCase());
@@ -69,36 +69,36 @@ public final class FileOperation {
             case "none" -> {
                 return Operator.NONE;
             }
-            default -> {
-                throw new IllegalArgumentException("Operatore errato o inesistente");
-            }
+            default -> throw new IllegalArgumentException("Operatore errato o inesistente");
         }
     }
 
-    public static void openOnBoard() throws FileNotFoundException {
-        Scanner scanner = new Scanner(singletonController.getFileOpened());
+    public static void openOnBoard(File file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
         boolean trovatoSeparatore = false;
         JTextField[][] testo = singletonController.getGestoreFinestra().getTextGriglia();
         int size = singletonController.getPuzzle().getSize();
         int i = 0, j = 0;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            if (line.equalsIgnoreCase("separator"))
+            String trimmed = line.trim();
+            if (trimmed.equalsIgnoreCase("separator"))
                 trovatoSeparatore = true;
-            if (trovatoSeparatore && !line.equalsIgnoreCase("separator")) {
-                StringTokenizer stringTokenizer = new StringTokenizer(line, ",",true);
-
+            if (trovatoSeparatore && !trimmed.equalsIgnoreCase("separator")) {
+                StringTokenizer stringTokenizer = new StringTokenizer(line, ",", true);
                 while (stringTokenizer.hasMoreTokens()) {
                     String token = stringTokenizer.nextToken();
                     if (token.matches("\\d")) {
                         int number = Integer.parseInt(token);
                         testo[size - i - 1][j].setText(Integer.toString(number));
-                    }else
-                         j++;
+                    } else
+                        j++;
                 }
                 j = 0;
                 i++;
             }
+            if(i==size)
+                break;
         }
         scanner.close();
     }
@@ -123,9 +123,9 @@ public final class FileOperation {
                 case MUL -> linea.append(" * ");
             }
             for (Point point : cage.getCagePoint()) {
-                int x = point.getX();
-                int y = point.getY();
-                linea.append(x + " " + y + " ");
+                int x = point.x();
+                int y = point.y();
+                linea.append(x).append(" ").append(y).append(" ");
             }
             bf.write(linea.toString());
             bf.newLine();

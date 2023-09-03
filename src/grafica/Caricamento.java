@@ -4,18 +4,17 @@ import risolutore.Risolutore;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.renderable.RenderableImage;
-import java.util.List;
 
 public class Caricamento extends JFrame {
-    private JProgressBar bar;
+
     public Caricamento(Risolutore risolutore) {
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        bar = new JProgressBar(0, 100);
-        this.add(bar);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        JLabel loading = new JLabel("Loading...");
+        this.add(loading);
         centra();
         Task task = new Task(risolutore);
         task.execute();
+        this.pack();
         this.setVisible(true);
     }
 
@@ -36,22 +35,16 @@ public class Caricamento extends JFrame {
 
     private class Task extends SwingWorker<Void, Void> {
 
-        private Risolutore risolutore;
+        private final Risolutore risolutore;
 
         public Task(Risolutore risolutore) {
             this.risolutore = risolutore;
         }
 
         @Override
-        protected Void doInBackground() throws Exception {
+        protected Void doInBackground() {
             risolutore.risolviKenken();
-            publish();
             return null;
-        }
-
-        @Override
-        protected void process(List<Void> chunks) {
-            bar.setValue(bar.getValue()+1);
         }
 
         @Override

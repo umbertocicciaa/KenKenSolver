@@ -1,7 +1,6 @@
 package risolutore;
 
 import griglia.Cage;
-import griglia.Operator;
 import griglia.Point;
 import griglia.Puzzle;
 
@@ -37,8 +36,8 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
 
     @Override
     protected Point prossimoPuntoDiScelta(Point ps) {
-        int x = ps.getX();
-        int y = ps.getY();
+        int x = ps.x();
+        int y = ps.y();
         if (y == size - 1)
             return new Point(x + 1, 0);
         return new Point(x, y + 1);
@@ -46,8 +45,8 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
 
     @Override
     protected Point precedentePuntoDiScelta(Point puntoDiScelta) {
-        int x = puntoDiScelta.getX();
-        int y = puntoDiScelta.getY();
+        int x = puntoDiScelta.x();
+        int y = puntoDiScelta.y();
         if (x > 0 && y == 0)
             return new Point(x - 1, size - 1);
         return new Point(x, y - 1);
@@ -60,18 +59,18 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
 
     @Override
     protected void assegna(Integer scelta, Point puntoDiScelta) {
-        board[puntoDiScelta.getX()][puntoDiScelta.getY()] = scelta;
+        board[puntoDiScelta.x()][puntoDiScelta.y()] = scelta;
     }
 
     @Override
     protected void deassegna(Integer scelta, Point puntoDiScelta) {
-        board[puntoDiScelta.getX()][puntoDiScelta.getY()] = null;
+        board[puntoDiScelta.x()][puntoDiScelta.y()] = null;
     }
 
 
     @Override
     protected Integer ultimaSceltaAssegnataA(Point puntoDiScelta) {
-        return board[puntoDiScelta.getX()][puntoDiScelta.getY()];
+        return board[puntoDiScelta.x()][puntoDiScelta.y()];
     }
 
     @Override
@@ -103,7 +102,7 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
         switch (cage.getCageOperation()) {
             case SUM -> {
                 for (Point point : points) {
-                    int x = point.getX(), y = point.getY();
+                    int x = point.x(), y = point.y();
                     if (board[x][y] != null) {
                         tot += board[x][y];
                         assegnati++;
@@ -116,7 +115,7 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
             }
             case MUL -> {
                 for (Point point : points) {
-                    int x = point.getX(), y = point.getY();
+                    int x = point.x(), y = point.y();
                     if (board[x][y] != null) {
                         tot *= board[x][y];
                         assegnati++;
@@ -129,7 +128,7 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
             }
             case SUB -> {
                 for (Point point : points) {
-                    int x = point.getX(), y = point.getY();
+                    int x = point.x(), y = point.y();
                     if (board[x][y] != null) {
                         if (tot < board[x][y])
                             tot = board[x][y] - tot;
@@ -145,7 +144,7 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
             case DIV -> {
                 double t = (double) tot;
                 for (Point point : points) {
-                    int x = point.getX(), y = point.getY();
+                    int x = point.x(), y = point.y();
                     if (board[x][y] != null) {
                         int number = board[x][y];
                         double v = (double) number;
@@ -171,8 +170,8 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
 
 
     private boolean presenteInRigaColonna(Integer scelta, Point puntoDiScelta) {
-        int riga = puntoDiScelta.getX();
-        int colonna = puntoDiScelta.getY();
+        int riga = puntoDiScelta.x();
+        int colonna = puntoDiScelta.y();
         for (Integer x : board[riga])
             if ((x != null) && x.equals(scelta))
                 return true;
