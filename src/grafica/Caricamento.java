@@ -49,7 +49,7 @@ public class Caricamento extends JFrame {
 
         @Override
         protected void done() {
-            new FinestraSoluzione(risolutore.getRisolviPuzzle().getBoard());
+            new FinestraSoluzione(risolutore.risolviPuzzle().getBoard());
             Caricamento.this.dispose();
         }
     }

@@ -142,16 +142,15 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
                 }
             }
             case DIV -> {
-                double t = (double) tot;
+                double t = tot;
                 for (Point point : points) {
                     int x = point.x(), y = point.y();
                     if (board[x][y] != null) {
                         int number = board[x][y];
-                        double v = (double) number;
-                        if (t < v) {
-                            t = v / t;
+                        if (t < (double) number) {
+                            t = (double) number / t;
                         } else {
-                            t /= v;
+                            t /= number;
                         }
                         assegnati++;
                     }

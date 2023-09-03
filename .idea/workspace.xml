@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="fixed backtracking">
-      <change afterPath="$PROJECT_DIR$/src/giocare/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/grafica/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/griglia/package-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/risolutore/package-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/giocare/Gioco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/giocare/Gioco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grafica/Caricamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/Caricamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grafica/FinestraSoluzione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraSoluzione.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grafica/GestoreFinestra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/GestoreFinestra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grafica/GestoreStato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/GestoreStato.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grafica/SingletonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/SingletonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Cage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/FileOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/FileOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/Risolutore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/Risolutore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,26 +46,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "rebuild",
-    "last_opened_file_path": "/Users/umbertodomenicociccia/Desktop/ing software/KenKenSolver",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;rebuild&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/umbertodomenicociccia/Desktop/ing software/KenKenSolver&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="risolutore" />
