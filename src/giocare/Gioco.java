@@ -178,11 +178,11 @@ public class Gioco {
                 }
             }
             if (total != target && operator != Operator.DIV) {
-                sb.append("Il totale: ").append(total).append(" non è corretto, dovrebbe essere: ").append(cage.getTargetNumber()).append("\n");
+                sb.append("Il totale: ").append(total).append(" non è corretto, dovrebbe essere: ").append(cage.getTargetNumber()).append(" per ").append(cage).append("\n");
                 return;
             }
             if (tot != (double) target && operator == Operator.DIV) {
-                sb.append("Il totale: ").append(total).append(" non è corretto, dovrebbe essere: ").append(cage.getTargetNumber()).append("\n");
+                sb.append("Il totale: ").append(total).append(" non è corretto, dovrebbe essere: ").append(cage.getTargetNumber()).append(" per ").append(cage).append("\n");
             }
         }
     }

@@ -116,7 +116,7 @@ public class FinestraMain implements ActionListener {
         pannelloPrincipale = new JPanel();
         pannelloPrincipale.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        UIUtil.centra(frame,500,500);
+        UIUtil.centra(frame, 500, 500);
     }
 
     @Override
