@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 public enum SingletonController implements ActionListener {
     CONTROLLER;
-    private GestoreFinestra gestoreFinestra;
+    private FinestraMain gestoreFinestra;
     private Puzzle puzzle;
     private Gioco gioco;
     private int size;
@@ -40,11 +40,11 @@ public enum SingletonController implements ActionListener {
         this.puzzle = puzzle;
     }
 
-    public GestoreFinestra getGestoreFinestra() {
+    public FinestraMain getGestoreFinestra() {
         return gestoreFinestra;
     }
 
-    public void setGestoreFinestra(GestoreFinestra gestoreFinestra) {
+    public void setGestoreFinestra(FinestraMain gestoreFinestra) {
         this.gestoreFinestra = gestoreFinestra;
         gestoreFinestra.getCancella().addActionListener(this);
         gestoreFinestra.getRisolvi().addActionListener(this);
