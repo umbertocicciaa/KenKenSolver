@@ -188,7 +188,7 @@ public class FinestraMain implements ActionListener {
             for (int i = 0; i < size; ++i) {
                 for (int j = 0; j < size; ++j) {
                     griglia[i][j] = new JPanel();
-                    griglia[i][j].setSize(50, 50);
+                    griglia[i][j].setPreferredSize(new Dimension(100,100));
                     textGriglia[i][j] = new JTextField();
                     griglia[i][j].setLayout(new BorderLayout());
                     griglia[i][j].add(textGriglia[i][j], BorderLayout.CENTER);

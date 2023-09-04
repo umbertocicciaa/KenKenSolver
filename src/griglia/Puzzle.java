@@ -28,9 +28,9 @@ public class Puzzle {
     }
 
     public static class PuzzleBuilder {
-        private int size;
-        private Set<Cage> cages;
-        private Map<Point, Cage> pointToCage;
+        private final int size;
+        private final Set<Cage> cages;
+        private final Map<Point, Cage> pointToCage;
 
         public PuzzleBuilder(int size) {
             if (size < 3 || size > 9)

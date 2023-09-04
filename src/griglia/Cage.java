@@ -26,7 +26,7 @@ public class Cage {
         if ((operator == Operator.DIV || operator == Operator.SUB) && (points.length != 2))
             throw new IllegalArgumentException("Divisone e Sottrazione accettano solo 2 blocchi... vedi regole ufficiali kenken");
         if((operator == Operator.NONE && points.length!=1))
-            throw new IllegalArgumentException("L'operazione nessuna ha solo un blocco.. vedi regole ufficiali kenken");
+            throw new IllegalArgumentException("L'operazione \"nessuna\" ha solo un blocco... vedi regole ufficiali kenken");
         this.targetNumber = targetNumber;
         this.cageOperation = operator;
         this.cagePoint = points;

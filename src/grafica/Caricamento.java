@@ -4,17 +4,20 @@ import risolutore.Risolutore;
 
 import javax.swing.*;
 
-public class Caricamento extends JFrame {
+public class Caricamento {
+
+    private final JFrame frame;
 
     public Caricamento(Risolutore risolutore) {
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         JLabel loading = new JLabel("Loading...");
-        this.add(loading);
-        UIUtil.centra(this, 200, 200);
+        frame.add(loading);
+        UIUtil.centra(frame, 200, 200);
         Task task = new Task(risolutore);
         task.execute();
-        this.pack();
-        this.setVisible(true);
+        frame.pack();
+        frame.setVisible(true);
     }
 
 
@@ -35,7 +38,7 @@ public class Caricamento extends JFrame {
         @Override
         protected void done() {
             new FinestraSoluzione(risolutore.risolviPuzzle().getBoard());
-            Caricamento.this.dispose();
+            frame.dispose();
         }
     }
 
