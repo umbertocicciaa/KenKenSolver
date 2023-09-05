@@ -32,7 +32,7 @@ public class Caricamento {
         @Override
         protected Boolean doInBackground() {
             risolutore.risolviKenken();
-            return risolutore.risolviPuzzle().trovataSoluzione();
+            return risolutore.trovataSoluzione();
         }
 
 

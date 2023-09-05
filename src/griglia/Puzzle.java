@@ -39,7 +39,6 @@ public class Puzzle {
             cages = new HashSet<>();
             pointToCage = new HashMap<>();
         }
-
         public PuzzleBuilder addCageToPuzzle(int target, Operator operator, Point... points) {
             Cage cage = new Cage(target, operator, points);
             cages.add(cage);

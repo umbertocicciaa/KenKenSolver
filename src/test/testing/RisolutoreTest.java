@@ -22,12 +22,7 @@ class RisolutoreTest {
         assertDoesNotThrow(() -> {
             Risolutore risolutore = new Risolutore(new RisolutoreBacktracking(FileOperation.createPuzzleFromFile(f)));
             risolutore.risolviKenken();
-            Integer[][] board = risolutore.risolviPuzzle().getBoard();
-            for (Integer[] integers : board) {
-                for (int j = 0; j < board.length; ++j) {
-                    Assertions.assertNotNull(integers[j]);
-                }
-            }
+            Assertions.assertTrue(risolutore.trovataSoluzione());
         });
     }
 

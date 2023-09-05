@@ -52,7 +52,7 @@ public final class FileOperation {
         return list;
     }
 
-    private static Operator getOperator(String string) {
+    public static Operator getOperator(String string) {
         switch (string) {
             case "+" -> {
                 return Operator.SUM;
@@ -97,7 +97,7 @@ public final class FileOperation {
                 j = 0;
                 i++;
             }
-            if(i==size)
+            if (i == size)
                 break;
         }
         scanner.close();
@@ -130,16 +130,18 @@ public final class FileOperation {
             bf.write(linea.toString());
             bf.newLine();
         }
-        bf.write("separator");
-        bf.newLine();
-        for (int i = 0; i < size; ++i) {
-            for (int j = 0; j < size; ++j) {
-                if (gioco.getBoard()[i][j] != null)
-                    bf.write(gioco.getBoard()[i][j].toString());
-                if (j < size - 1)
-                    bf.write(",");
-            }
+        if (gioco != null) {
+            bf.write("separator");
             bf.newLine();
+            for (int i = 0; i < size; ++i) {
+                for (int j = 0; j < size; ++j) {
+                    if (gioco.getBoard()[i][j] != null)
+                        bf.write(gioco.getBoard()[i][j].toString());
+                    if (j < size - 1)
+                        bf.write(",");
+                }
+                bf.newLine();
+            }
         }
         bf.close();
     }

@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="testing">
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="fixed loading screen">
       <change afterPath="$PROJECT_DIR$/src/grafica/FinestraCreaPuzzle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/MainTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grafica/Caricamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/Caricamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/FinestraMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/UIUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/UIUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/FileOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/FileOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Puzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/Risolutore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/Risolutore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/risolutore/RisolviPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolviPuzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/testing/RisolutoreTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/testing/RisolutoreTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +40,9 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -100,7 +106,7 @@
       <recent name="griglia" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="KenKenSolver" />
@@ -176,9 +182,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.RisolutoreTest.risolviKenken" />
+        <item itemvalue="Application.MainTest" />
         <item itemvalue="JUnit.RisolutoreTest" />
         <item itemvalue="JUnit.FileOperationTest.correctOpenFile" />
       </list>
@@ -202,7 +208,7 @@
       <workItem from="1692778736773" duration="11533000" />
       <workItem from="1693474046834" duration="28011000" />
       <workItem from="1693565995897" duration="64597000" />
-      <workItem from="1693844614794" duration="14621000" />
+      <workItem from="1693844614794" duration="38841000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
@@ -364,7 +370,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693856649407</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fixed loading screen">
+      <option name="closed" value="true" />
+      <created>1693901769775</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1693901769775</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,7 +451,8 @@
     <MESSAGE value="improvement GUI and code duplication" />
     <MESSAGE value="improvement code" />
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <MESSAGE value="fixed loading screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed loading screen" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

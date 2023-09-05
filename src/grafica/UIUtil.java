@@ -20,4 +20,19 @@ public final class UIUtil {
         frame.setLocation(x, y);
     }
 
+    public static Color getRandColor(){
+        int r = (int) (Math.random() * 255);
+        int g = (int) (Math.random() * 255);
+        int b = (int) (Math.random() * 255);
+
+        // assicurati che il colore non sia troppo scuro
+        while (r < 128 || g < 128 || b < 128) {
+            r = (int) (Math.random() * 255);
+            g = (int) (Math.random() * 255);
+            b = (int) (Math.random() * 255);
+        }
+        return new Color(r, g, b);
+    }
+
+
 }

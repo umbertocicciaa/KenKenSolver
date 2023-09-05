@@ -26,6 +26,8 @@ public class FinestraMain implements ActionListener {
     private JMenuItem save;
     private JMenuItem exit;
     private JMenuItem help;
+    private JMenuItem nuovo;
+
     private final SingletonController singletonController;
 
     private final GestoreStato gestoreStato = new GestoreStato() {
@@ -75,11 +77,14 @@ public class FinestraMain implements ActionListener {
         load = new JMenuItem("Open");
         save = new JMenuItem("Save");
         exit = new JMenuItem("Exit");
+        nuovo = new JMenuItem("Crea Nuovo Puzzle");
 
         load.addActionListener(this);
         save.addActionListener(this);
         exit.addActionListener(this);
+        nuovo.addActionListener(this);
 
+        file.add(nuovo);
         file.add(load);
         file.add(save);
         file.add(exit);
@@ -166,6 +171,20 @@ public class FinestraMain implements ActionListener {
                     puoi inserire i numeri da 1 fino alla dimensione del puzzle;
                     puoi inserire un numero se non è gia presente nella stessa riga o colonna;
                     per vincere il totale all'interno di un blocco deve essere ottenuto attraverso l'operazione aritmetica raffigurata tra i numeri inseriti nel blocco""", "Kenken puzzle", JOptionPane.INFORMATION_MESSAGE);
+        } else if (e.getSource() == nuovo) {
+            int number = 0;
+            String answer;
+            do {
+                 answer = JOptionPane.showInputDialog("Inserisci la dimensione del puzzle che vuoi creare (da 3 a 9)");
+                try {
+                    number = Integer.parseInt(answer);
+                    if (number < 3 || number > 9)
+                        JOptionPane.showMessageDialog(null, "Inserisci dimensione da 1 a 9", null, JOptionPane.WARNING_MESSAGE);
+                } catch (NumberFormatException exception) {
+                    exception.printStackTrace();
+                }
+            } while (number < 3 || number > 9);
+            new FinestraCreaPuzzle(number);
         }
     }
 
@@ -188,7 +207,7 @@ public class FinestraMain implements ActionListener {
             for (int i = 0; i < size; ++i) {
                 for (int j = 0; j < size; ++j) {
                     griglia[i][j] = new JPanel();
-                    griglia[i][j].setPreferredSize(new Dimension(100,100));
+                    griglia[i][j].setPreferredSize(new Dimension(100, 100));
                     textGriglia[i][j] = new JTextField();
                     griglia[i][j].setLayout(new BorderLayout());
                     griglia[i][j].add(textGriglia[i][j], BorderLayout.CENTER);
@@ -233,7 +252,7 @@ public class FinestraMain implements ActionListener {
         private void setPuzzleOnPanel() {
             Set<Cage> cages = singletonController.getPuzzle().getCages();
             for (Cage cage : cages) {
-                Color color = getRandColor();
+                Color color = UIUtil.getRandColor();
                 int target = cage.getTargetNumber();
                 Operator operator = cage.getCageOperation();
                 String op = getStringByOP(operator);
@@ -277,20 +296,6 @@ public class FinestraMain implements ActionListener {
                 }
             }
             return "";
-        }
-
-        private Color getRandColor() {
-            int r = (int) (Math.random() * 255);
-            int g = (int) (Math.random() * 255);
-            int b = (int) (Math.random() * 255);
-
-            // assicurati che il colore non sia troppo scuro
-            while (r < 128 || g < 128 || b < 128) {
-                r = (int) (Math.random() * 255);
-                g = (int) (Math.random() * 255);
-                b = (int) (Math.random() * 255);
-            }
-            return new Color(r, g, b);
         }
 
         public static Color getColor(int x, int y) {

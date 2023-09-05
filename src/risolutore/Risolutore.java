@@ -7,4 +7,8 @@ public record Risolutore(RisolviPuzzle risolviPuzzle) {
     public void risolviKenken() {
         risolviPuzzle.risolvi();
     }
+
+    public boolean trovataSoluzione(){
+        return risolviPuzzle.trovataSoluzione();
+    }
 }
