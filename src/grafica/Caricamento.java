@@ -4,6 +4,12 @@ import risolutore.Risolutore;
 
 import javax.swing.*;
 
+/**
+ * <p>Questa classe crea la finestra caricamento che "aspetta" che l'algoritmo venga elaborato. Una volta finita l'elaborazione se la
+ * soluzione è stata trovata si crea la finestra contenente la soluzione</p>
+ *
+ * @see FinestraSoluzione
+ */
 public class Caricamento {
 
     private final JFrame frame;

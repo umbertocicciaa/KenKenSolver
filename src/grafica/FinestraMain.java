@@ -12,6 +12,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
+/**
+ * Questa classe realizza la finestra principale.
+ */
 public class FinestraMain implements ActionListener {
     private JFrame frame;
     private JPanel pannelloPrincipale;
@@ -27,9 +30,17 @@ public class FinestraMain implements ActionListener {
     private JMenuItem exit;
     private JMenuItem help;
     private JMenuItem nuovo;
-
+    /**
+     * <p>{@code singletonController} mediatore tra la GUI e il modello</p>
+     *
+     * @see SingletonController
+     */
     private final SingletonController singletonController;
-
+    /**
+     * <p>{@code gestoreStato} gestisce gli stati della finestra</p>
+     *
+     * @see GestoreStato
+     */
     private final GestoreStato gestoreStato = new GestoreStato() {
     };
 
@@ -63,6 +74,9 @@ public class FinestraMain implements ActionListener {
         return textGriglia;
     }
 
+    /**
+     * <p>Il metodo crea e inserisce i pulsanti sulla finestra</p>
+     */
     private void createButton() {
         JMenuBar bar = new JMenuBar();
         JMenu file = new JMenu("File");
@@ -116,6 +130,9 @@ public class FinestraMain implements ActionListener {
         frame.setContentPane(pannelloPrincipale);
     }
 
+    /**
+     * <p>Il metodo crea la finestra principale</p>
+     */
     private void createWindow() {
         frame = new JFrame();
         pannelloPrincipale = new JPanel();
@@ -175,7 +192,7 @@ public class FinestraMain implements ActionListener {
             int number = 0;
             String answer;
             do {
-                 answer = JOptionPane.showInputDialog("Inserisci la dimensione del puzzle che vuoi creare (da 3 a 9)");
+                answer = JOptionPane.showInputDialog("Inserisci la dimensione del puzzle che vuoi creare (da 3 a 9)");
                 try {
                     number = Integer.parseInt(answer);
                     if (number < 3 || number > 9)
@@ -188,6 +205,12 @@ public class FinestraMain implements ActionListener {
         }
     }
 
+    /**
+     * Questa classe realizza lo stato che si "ottiene" quando un puzzle viene caricato correttamente.
+     * Entrando in questo stato {@code entry} abilitamo tutti i pulsanti che possono essere utilizzati solo quando
+     * la finestra entra in questo stato. Ovviamente l'uscita {@code exit} da questo stato comporta il riadattamento della finestra
+     * e il diasabilitare di un insieme di comandi
+     */
     public class PuzzleCaricato implements Stato {
         private final int size;
         private final static Map<Point, Color> colori = new HashMap<>();

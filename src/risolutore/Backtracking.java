@@ -1,5 +1,13 @@
 package risolutore;
-public abstract class Backtracking<P, S> implements RisolviPuzzle{
+
+/**
+ * <p>Questa classe fornisce il template method risolvi e viene utilizzata nel pattern strategy dalla classe risolutore backtracking</p>
+ *
+ * @see Risolutore
+ * @see RisolutoreBacktracking
+ * @see Backtracking
+ */
+public abstract class Backtracking<P, S> implements RisolviPuzzle {
     protected abstract P primoPuntoDiScelta();
 
     protected abstract P prossimoPuntoDiScelta(P ps);
@@ -34,6 +42,9 @@ public abstract class Backtracking<P, S> implements RisolviPuzzle{
         this(Integer.MAX_VALUE);
     }
 
+    /**
+     * Template method
+     */
     @Override
     public final void risolvi() { // template method
         P ps = primoPuntoDiScelta();

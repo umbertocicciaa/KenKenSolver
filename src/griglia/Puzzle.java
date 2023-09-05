@@ -2,9 +2,15 @@ package griglia;
 
 import java.util.*;
 
+/**
+ * <p>Questa classe è il cuore del software. Rappresenta il concetto di puzzle kenken</p>
+ */
 public class Puzzle {
     private final int size;
     private final Set<Cage> cages;
+    /**
+     * <p>Quesa variabile {@code pointToCage}associa ad ogni punto del puzzle il corrispettivo cage di cui fa parte</p>
+     */
     private final Map<Point, Cage> pointToCage;
 
     private Puzzle(PuzzleBuilder builder) {
@@ -27,6 +33,9 @@ public class Puzzle {
         return pointToCage;
     }
 
+    /**
+     * <p>Questa classe attraverso il design pattern Builder permette la creazione di un puzzle "per parti" a runtime</p>
+     */
     public static class PuzzleBuilder {
         private final int size;
         private final Set<Cage> cages;
@@ -39,6 +48,10 @@ public class Puzzle {
             cages = new HashSet<>();
             pointToCage = new HashMap<>();
         }
+
+        /**
+         * @throws RuntimeException eccezzione lanciata se un punto gia appartiene ad un altro cage
+         */
         public PuzzleBuilder addCageToPuzzle(int target, Operator operator, Point... points) {
             Cage cage = new Cage(target, operator, points);
             cages.add(cage);
@@ -55,6 +68,11 @@ public class Puzzle {
             return new Puzzle(this);
         }
 
+        /**
+         * <p>Questo metodo controlla se tutti i punti fanno parte del puzzle</p>
+         *
+         * @throws RuntimeException eccezzione lanciata se alcune celle non sono state inserite nei cage
+         */
         private void checkAllPointAreInCage() {
             for (int i = 0; i < size; ++i) {
                 for (int j = 0; j < size; ++j) {

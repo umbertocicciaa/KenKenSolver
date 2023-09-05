@@ -6,6 +6,13 @@ import griglia.Puzzle;
 
 import java.util.*;
 
+/**
+ * <p>Questa classe in particolare fornisce i metodi utilizzati dal template method {@code risolvi}</p>
+ *
+ * @see Risolutore
+ * @see RisolutoreBacktracking
+ * @see Backtracking
+ */
 public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     private final Puzzle puzzle;
     private final Integer[][] board;
@@ -28,11 +35,12 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     public Integer[][] getBoard() {
         return soluzioneFinale;
     }
+
     @Override
-    public boolean trovataSoluzione(){
-        for(int i=0;i<size;++i)
-            for(int j=0;j<size;++j)
-                if(soluzioneFinale[i][j]==null)
+    public boolean trovataSoluzione() {
+        for (int i = 0; i < size; ++i)
+            for (int j = 0; j < size; ++j)
+                if (soluzioneFinale[i][j] == null)
                     return false;
         return true;
     }

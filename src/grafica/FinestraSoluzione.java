@@ -3,6 +3,9 @@ package grafica;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * <p>Questa classe serve a rappresentare la finestra che verra visualizzata una volta calcolata la soluzione del puzzle</p>
+ */
 public class FinestraSoluzione {
     private JPanel gridPanel;
     private final int size;
@@ -18,7 +21,11 @@ public class FinestraSoluzione {
         frame.setVisible(true);
     }
 
-
+    /**
+     * <p>Questo metodo riceve la soluzione e ne permette la rappresentazione GUI</p>
+     *
+     * @param soluzione matrice di Integer contenente la soluzione del puzzle
+     */
     private void createPuzzleWindow(Integer[][] soluzione) {
         JLabel[][] label = new JLabel[size][size];
         JPanel[][] pannelli = new JPanel[size][size];
@@ -26,7 +33,7 @@ public class FinestraSoluzione {
             for (int j = 0; j < size; ++j) {
                 label[i][j] = new JLabel("", SwingConstants.CENTER);
                 pannelli[i][j] = new JPanel(new BorderLayout());
-                pannelli[i][j].setPreferredSize(new Dimension(75,75));
+                pannelli[i][j].setPreferredSize(new Dimension(75, 75));
                 label[i][j].setText("" + soluzione[size - i - 1][j]);
                 pannelli[i][j].setBackground(FinestraMain.PuzzleCaricato.getColor(size - i - 1, j));
                 pannelli[i][j].add(label[i][j], BorderLayout.CENTER);
@@ -35,6 +42,9 @@ public class FinestraSoluzione {
         }
     }
 
+    /**
+     * <p>Questo crea la finestra</p>
+     */
     private void createWindow() {
         frame = new JFrame();
         gridPanel = new JPanel(new GridLayout(size, size));

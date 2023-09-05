@@ -3,11 +3,20 @@ package grafica;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * <p>Questa classe di utilita fornisce metodi utili alla creazione di finestre</p>
+ */
 public final class UIUtil {
     private UIUtil() {
-
     }
 
+    /**
+     * <p>Questa metodo centra la finestra passata in input</p>
+     *
+     * @param frame             finestra da centrare
+     * @param larghezzaFinestra larghezza che deve avere la finestra
+     * @param altezzaFinestra   altezza che deve avere la finestra
+     */
     public static void centra(JFrame frame, int larghezzaFinestra, int altezzaFinestra) {
         frame.setSize(larghezzaFinestra, altezzaFinestra);
 
@@ -20,7 +29,7 @@ public final class UIUtil {
         frame.setLocation(x, y);
     }
 
-    public static Color getRandColor(){
+    public static Color getRandColor() {
         int r = (int) (Math.random() * 255);
         int g = (int) (Math.random() * 255);
         int b = (int) (Math.random() * 255);

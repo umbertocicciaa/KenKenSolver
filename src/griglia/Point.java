@@ -1,6 +1,15 @@
 package griglia;
 
-public record Point(int x, int y) implements Comparable<Point>{
+/**
+ * <p>Questa classe rappresenta l'entita punto geometrico, il puzzle è formato infatti da un'insieme di punti uniti in un cage</p>
+ *
+ * @see Cage
+ * @see Puzzle
+ */
+public record Point(int x, int y) implements Comparable<Point> {
+    /**
+     * @throws IllegalArgumentException eccezione lanciata se le coordinate fornite sono negative
+     */
     public Point {
         if (x < 0 || y < 0)
             throw new IllegalArgumentException("Coordinate errate");

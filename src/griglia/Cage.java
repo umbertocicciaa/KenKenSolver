@@ -2,6 +2,11 @@ package griglia;
 
 import java.util.Arrays;
 
+/**
+ * <p>Questa classe rappresenta un cage del puzzle kenken</p>
+ *
+ * @see Puzzle
+ */
 public class Cage {
     private final Point[] cagePoint;
     private final int targetNumber;
@@ -21,13 +26,15 @@ public class Cage {
         return cageOperation;
     }
 
-
+    /**
+     * @throws IllegalArgumentException vincoli non soddisfatti
+     */
     public Cage(int targetNumber, Operator operator, Point... points) {
         if ((operator == Operator.DIV || operator == Operator.SUB) && (points.length != 2))
             throw new IllegalArgumentException("Divisone e Sottrazione accettano solo 2 blocchi... vedi regole ufficiali kenken");
-        if((operator == Operator.NONE && points.length!=1))
+        if ((operator == Operator.NONE && points.length != 1) || (points.length == 1 && operator != Operator.NONE))
             throw new IllegalArgumentException("L'operazione \"nessuna\" ha solo un blocco... vedi regole ufficiali kenken");
-        if(targetNumber<1)
+        if (targetNumber < 1)
             throw new IllegalArgumentException("Numero obbiettivo negativo o 0");
         this.targetNumber = targetNumber;
         this.cageOperation = operator;

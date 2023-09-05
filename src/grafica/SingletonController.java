@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
-
+/**Questa classe rappresenta un mediatore fra i vari componenti modelli componenti grafica ecc. */
 public enum SingletonController implements ActionListener {
     CONTROLLER;
     private FinestraMain gestoreFinestra;
@@ -23,7 +23,6 @@ public enum SingletonController implements ActionListener {
     private Gioco gioco;
     private int size;
     private File fileOpened;
-
     private boolean buttonPressed;
 
     public void setFile(File file) {
@@ -68,7 +67,8 @@ public enum SingletonController implements ActionListener {
             }
         }
     }
-
+    /**<p>Questa classe gestisce gli eventi di inserimento valori in un puzzle per giocarci</p>
+     * @code controlNumber  controlla se cio che è stato inserito è effettivamente un numero e che rispetti i vincoli del puzzle (numeri da 1..size)*/
     private class MyDocumentListener implements DocumentListener {
 
         private final int i, j;

@@ -4,17 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="fixed loading screen">
-      <change afterPath="$PROJECT_DIR$/src/grafica/FinestraCreaPuzzle.java" afterDir="false" />
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="new FinestraCreaPuzzle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/giocare/Gioco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/giocare/Gioco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grafica/Caricamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/Caricamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/FinestraCreaPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraCreaPuzzle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grafica/FinestraMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/FinestraSoluzione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraSoluzione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/GestoreStato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/GestoreStato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/SingletonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/SingletonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/Stato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/Stato.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grafica/UIUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/UIUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Cage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/griglia/FileOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/FileOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Operator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Operator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Point.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/griglia/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Puzzle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/Backtracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/Backtracking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/risolutore/Risolutore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/Risolutore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/risolutore/RisolviPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolviPuzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/testing/RisolutoreTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/testing/RisolutoreTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -208,7 +217,7 @@
       <workItem from="1692778736773" duration="11533000" />
       <workItem from="1693474046834" duration="28011000" />
       <workItem from="1693565995897" duration="64597000" />
-      <workItem from="1693844614794" duration="38841000" />
+      <workItem from="1693844614794" duration="44506000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
@@ -378,7 +387,23 @@
       <option name="project" value="LOCAL" />
       <updated>1693901769775</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixed loading screen">
+      <option name="closed" value="true" />
+      <created>1693941857382</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693941857382</updated>
+    </task>
+    <task id="LOCAL-00023" summary="new FinestraCreaPuzzle">
+      <option name="closed" value="true" />
+      <created>1693941906033</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1693941906034</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -452,7 +477,8 @@
     <MESSAGE value="improvement code" />
     <MESSAGE value="testing" />
     <MESSAGE value="fixed loading screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed loading screen" />
+    <MESSAGE value="new FinestraCreaPuzzle" />
+    <option name="LAST_COMMIT_MESSAGE" value="new FinestraCreaPuzzle" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

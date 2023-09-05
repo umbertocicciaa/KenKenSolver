@@ -10,12 +10,24 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+
+/**
+ * <p>Questa classe di utilita fornisce metodi utili alla creazione/ripristino/salvattaggio puzzle kenken da file</p>
+ */
 public final class FileOperation {
     private FileOperation() {
     }
 
+    /**
+     * <p>{@code singletonController} mediatore tra la GUI e il modello</p>
+     *
+     * @see SingletonController
+     */
     private static final SingletonController singletonController = SingletonController.CONTROLLER;
 
+    /**
+     * <p>Questo metodo crea un puzzle kenken ricevuto da file</p>
+     */
     public static Puzzle createPuzzleFromFile(File f) throws FileNotFoundException {
         Puzzle puzzle;
         Scanner scanner = new Scanner(f);
@@ -73,6 +85,9 @@ public final class FileOperation {
         }
     }
 
+    /**
+     * <p>Questo metodo riceve un file con qualche punto gia inserito sul tavolo da gioco e lo ripristina sul tavolo</p>
+     */
     public static void openOnBoard(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         boolean trovatoSeparatore = false;
@@ -103,6 +118,9 @@ public final class FileOperation {
         scanner.close();
     }
 
+    /**
+     * <p>Questo metodo salva i progressi fatti durante il gioco in un file per poterlo ripristinare in seguito</p>
+     */
     public static void savePuzzle(File f, Puzzle puzzle, Gioco gioco) throws IOException {
         BufferedWriter bf = new BufferedWriter(new FileWriter(f));
         if (puzzle == null)

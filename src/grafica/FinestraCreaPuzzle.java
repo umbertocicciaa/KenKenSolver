@@ -22,9 +22,9 @@ public class FinestraCreaPuzzle {
     private final int size;
     private final java.util.List<Point> points = new ArrayList<>();
     private Puzzle.PuzzleBuilder puzzleBuilder;
+
     public FinestraCreaPuzzle(int size) {
-        if (size < 3 || size > 9)
-            throw new IllegalArgumentException("Dimensione puzzle scorretta");
+        if (size < 3 || size > 9) throw new IllegalArgumentException("Dimensione puzzle scorretta");
         this.size = size;
         this.puzzleBuilder = new Puzzle.PuzzleBuilder(size);
         createWindow();
@@ -33,6 +33,10 @@ public class FinestraCreaPuzzle {
         frame.pack();
         frame.setVisible(true);
     }
+
+    /**
+     * <p>Il metodo crea e inserisce i pulsanti sulla finestra</p>
+     */
     private void createButton() {
         JButton addCage = new JButton("Add Cage");
         JButton undo = new JButton("Undo Cage Creation");
@@ -63,6 +67,7 @@ public class FinestraCreaPuzzle {
         buttonPanel.add(buildPuzzle);
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
     }
+
     private void createCage() {
         if (points.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Punti non selezionati col mouse");
@@ -103,14 +108,15 @@ public class FinestraCreaPuzzle {
             exception.printStackTrace();
         }
     }
+
     private Color getRandColor() {
         Color res;
         do {
             res = UIUtil.getRandColor();
-        }
-        while (res.equals(Color.CYAN) || res.equals(Color.cyan));
+        } while (res.equals(Color.CYAN) || res.equals(Color.cyan));
         return res;
     }
+
     private void createGrid() {
         JPanel panelGrid = new JPanel(new GridLayout(size, size));
         mainPanel.add(panelGrid, BorderLayout.CENTER);
@@ -140,6 +146,7 @@ public class FinestraCreaPuzzle {
             }
         }
     }
+
     private void createWindow() {
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
