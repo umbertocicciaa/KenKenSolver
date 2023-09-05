@@ -1,6 +1,6 @@
 package griglia;
 
-public record Point(int x, int y) {
+public record Point(int x, int y) implements Comparable<Point>{
     public Point {
         if (x < 0 || y < 0)
             throw new IllegalArgumentException("Coordinate errate");
@@ -21,5 +21,14 @@ public record Point(int x, int y) {
                 "x=" + x +
                 ", y=" + y +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Point other) {
+        int cmp = this.x - other.x;
+        if (cmp != 0) {
+            return cmp;
+        }
+        return this.y - other.y;
     }
 }

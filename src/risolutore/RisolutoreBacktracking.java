@@ -28,6 +28,14 @@ public final class RisolutoreBacktracking extends Backtracking<Point, Integer> {
     public Integer[][] getBoard() {
         return soluzioneFinale;
     }
+    @Override
+    public boolean trovataSoluzione(){
+        for(int i=0;i<size;++i)
+            for(int j=0;j<size;++j)
+                if(soluzioneFinale[i][j]==null)
+                    return false;
+        return true;
+    }
 
     @Override
     protected Point primoPuntoDiScelta() {

@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="improvement code">
+    <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="testing">
       <change afterPath="$PROJECT_DIR$/src/grafica/FinestraCreaPuzzle.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/MainTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/source/puzzle4x4.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/source/puzzle5x5.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/source/puzzle6x6.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/source/puzzle9x9.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/source/puzzleerrato.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/testing/CageTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/testing/FileOperationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/testing/PuzzleTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/testing/RisolutoreTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KenKenSolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/KenKenSolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Cage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/Caricamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/Caricamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolutoreBacktracking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/risolutore/RisolviPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/risolutore/RisolviPuzzle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,9 +100,22 @@
       <recent name="griglia" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.MainTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="KenKenSolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.MainTest" />
       <module name="KenKenSolver" />
       <extension name="coverage">
         <pattern>
@@ -132,22 +138,6 @@
       <option name="PACKAGE_NAME" value="testing" />
       <option name="MAIN_CLASS_NAME" value="testing.FileOperationTest" />
       <option name="METHOD_NAME" value="correctOpenFile(java.io.File)" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PuzzleTest.shouldThrowRunTimeExceptionForNotFullPuzzle" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="KenKenSolver" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="testing.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="testing" />
-      <option name="MAIN_CLASS_NAME" value="testing.PuzzleTest" />
-      <option name="METHOD_NAME" value="shouldThrowRunTimeExceptionForNotFullPuzzle" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -186,11 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.RisolutoreTest.risolviKenken" />
         <item itemvalue="JUnit.RisolutoreTest" />
         <item itemvalue="JUnit.FileOperationTest.correctOpenFile" />
-        <item itemvalue="JUnit.PuzzleTest.shouldThrowRunTimeExceptionForNotFullPuzzle" />
       </list>
     </recent_temporary>
   </component>
@@ -212,7 +202,7 @@
       <workItem from="1692778736773" duration="11533000" />
       <workItem from="1693474046834" duration="28011000" />
       <workItem from="1693565995897" duration="64597000" />
-      <workItem from="1693844614794" duration="7279000" />
+      <workItem from="1693844614794" duration="14621000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
@@ -366,7 +356,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693820924872</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="testing">
+      <option name="closed" value="true" />
+      <created>1693856649407</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1693856649407</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -438,7 +436,8 @@
     <MESSAGE value="fixed backtracking" />
     <MESSAGE value="improvement GUI and code duplication" />
     <MESSAGE value="improvement code" />
-    <option name="LAST_COMMIT_MESSAGE" value="improvement code" />
+    <MESSAGE value="testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing" />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

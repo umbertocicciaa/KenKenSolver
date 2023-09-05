@@ -21,7 +21,7 @@ public class Caricamento {
     }
 
 
-    private class Task extends SwingWorker<Void, Void> {
+    private class Task extends SwingWorker<Boolean, Void> {
 
         private final Risolutore risolutore;
 
@@ -30,15 +30,21 @@ public class Caricamento {
         }
 
         @Override
-        protected Void doInBackground() {
+        protected Boolean doInBackground() {
             risolutore.risolviKenken();
-            return null;
+            return risolutore.risolviPuzzle().trovataSoluzione();
         }
+
 
         @Override
         protected void done() {
-            new FinestraSoluzione(risolutore.risolviPuzzle().getBoard());
-            frame.dispose();
+            if (doInBackground()) {
+                new FinestraSoluzione(risolutore.risolviPuzzle().getBoard());
+                frame.dispose();
+            } else {
+                frame.dispose();
+                JOptionPane.showMessageDialog(null, "La soluzione non è stata trovata", "Soluzione non trovata", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }
 
