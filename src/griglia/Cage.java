@@ -55,7 +55,7 @@ public class Cage {
     public int hashCode() {
         int result = targetNumber;
         result = 31 * result + (cageOperation != null ? cageOperation.hashCode() : 0);
-        result = 31 * result + (cagePoint != null ? Arrays.hashCode(cagePoint) : 0);
+        result = 31 * result + Arrays.hashCode(cagePoint);
         return result;
     }
 

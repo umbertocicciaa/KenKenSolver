@@ -63,6 +63,16 @@ public class Puzzle {
             return this;
         }
 
+        public PuzzleBuilder addCageToPuzzle(Cage cage) {
+            cages.add(cage);
+            for (Point point : cage.getCagePoint()) {
+                if (pointToCage.containsKey(point))
+                    throw new RuntimeException("Il puzzle contiene gia il punto: " + point);
+                pointToCage.put(point, cage);
+            }
+            return this;
+        }
+
         public Puzzle build() {
             checkAllPointAreInCage();
             return new Puzzle(this);

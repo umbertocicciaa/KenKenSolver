@@ -1,9 +1,7 @@
 package grafica;
 
-import griglia.FileOperation;
-import griglia.Operator;
+import griglia.*;
 import griglia.Point;
-import griglia.Puzzle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,25 +9,81 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
 
 import static griglia.FileOperation.getOperator;
 
+/**
+ * <p>Questa classe si occupa della finestra che permette di creare puzzle customizzati dall'utente</p>
+ */
 public class FinestraCreaPuzzle {
     private JFrame frame;
     private JPanel mainPanel;
     private JPanel[][] grid;
     private final int size;
-    private final java.util.List<Point> points = new ArrayList<>();
-    private Puzzle.PuzzleBuilder puzzleBuilder;
+    private final Set<Point> points = new HashSet<>();
+    private final Set<Cage> cages = new HashSet<>();
+    private final MementoManager manager = new MementoManager();
+
+    /**
+     * <p>Questa classe implementa il design pattern Memento; Il memento viene utilizzato per implementare il pulsante undo
+     * con il quale eliminare i cage inseriti nella finestra</p>
+     */
+    private record Memento(Set<Point> point, Cage cage) {
+        private Memento(Set<Point> point, Cage cage) {
+            this.point = new HashSet<>();
+            this.point.addAll(point);
+            this.cage = cage;
+        }
+    }
+
+    /**
+     * <p>Questa classe gestisce i memento permettendone il ripristino richiamando il metodo restore;
+     * "funziona" come un Caretaker</p>
+     */
+    private class MementoManager {
+        private final Stack<Memento> stack = new Stack<>();
+
+        private void add(Memento memento) {
+            stack.add(memento);
+        }
+
+        private void restore() {
+            if (stack.size() != 1) {
+                Memento memento = stack.pop();
+                restoreStateMemento(memento);
+            }
+        }
+    }
+
+    /**
+     * <p>Questo metodo salva lo stato attuale dei cage permettendone il riprsitino successivo</p>
+     */
+    private Memento saveStateMemento(Set<Point> points, Cage cages) {
+        return new Memento(points, cages);
+    }
+
+    /**
+     * <p>Questa metodo ripristina lo stato attuale a quello del memento passato in input</p>
+     */
+    private void restoreStateMemento(Memento memento) {
+        for (Point p : memento.point) {
+            grid[size - p.x() - 1][p.y()].setBackground(new Color(238, 238, 238));
+            grid[size - p.x() - 1][p.y()].removeAll();
+        }
+        if (memento.cage != null) cages.remove(memento.cage);
+        System.out.println("restored");
+    }
 
     public FinestraCreaPuzzle(int size) {
         if (size < 3 || size > 9) throw new IllegalArgumentException("Dimensione puzzle scorretta");
         this.size = size;
-        this.puzzleBuilder = new Puzzle.PuzzleBuilder(size);
         createWindow();
         createGrid();
         createButton();
+        manager.add(new Memento(points, null));
         frame.pack();
         frame.setVisible(true);
     }
@@ -40,13 +94,17 @@ public class FinestraCreaPuzzle {
     private void createButton() {
         JButton addCage = new JButton("Add Cage");
         JButton undo = new JButton("Undo Cage Creation");
-        undo.addActionListener(e -> {
-        });
+        undo.addActionListener(e -> manager.restore());
         JButton buildPuzzle = new JButton("Crea puzzle");
         addCage.addActionListener(e -> createCage());
         buildPuzzle.addActionListener(e -> {
+            Puzzle puzzle;
             try {
-                Puzzle puzzle = puzzleBuilder.build();
+                System.out.println(cages);
+                Puzzle.PuzzleBuilder puzzleBuilder = new Puzzle.PuzzleBuilder(size);
+                for (Cage cage : cages)
+                    puzzleBuilder.addCageToPuzzle(cage);
+                puzzle = puzzleBuilder.build();
                 JFileChooser fileChooser = new JFileChooser();
                 int response = fileChooser.showSaveDialog(null);
                 if (response == JFileChooser.APPROVE_OPTION) {
@@ -94,14 +152,17 @@ public class FinestraCreaPuzzle {
             return;
         }
         try {
-            puzzleBuilder.addCageToPuzzle(target, operator, points.toArray(new Point[0]));
+            Cage cage = new Cage(target, operator, points.toArray(new Point[0]));
             Color color = getRandColor();
             for (Point p : points) {
                 grid[size - p.x() - 1][p.y()].setBackground(color);
-                grid[size - p.x() - 1][p.y()].add(new JLabel(targetNumber + " " + operatorCage, SwingConstants.CENTER), BorderLayout.CENTER);
+                JLabel label = new JLabel(targetNumber + " " + operatorCage, SwingConstants.CENTER);
+                grid[size - p.x() - 1][p.y()].add(label, BorderLayout.CENTER);
                 frame.revalidate();
                 frame.repaint();
             }
+            cages.add(cage);
+            manager.add(saveStateMemento(points, cage));
             points.clear();
         } catch (IllegalArgumentException exception) {
             JOptionPane.showMessageDialog(null, "Il cage non segue le regole del puzzle");
@@ -117,6 +178,29 @@ public class FinestraCreaPuzzle {
         return res;
     }
 
+    private class MouseEventManager extends MouseAdapter {
+        private final int tmpI, tmpJ;
+
+        private MouseEventManager(int tmpI, int tmpJ) {
+            this.tmpI = tmpI;
+            this.tmpJ = tmpJ;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            JPanel clickedPanel = (JPanel) e.getSource();
+            if (clickedPanel.getBackground().equals(new Color(238, 238, 238))) {
+                clickedPanel.setBackground(Color.CYAN);
+                Point point = new Point(size - tmpI - 1, tmpJ);
+                points.add(point);
+            } else if (clickedPanel.getBackground().equals(Color.CYAN)) {
+                clickedPanel.setBackground(new Color(238, 238, 238));
+                Point point = new Point(size - tmpI - 1, tmpJ);
+                points.remove(point);
+            }
+        }
+    }
+
     private void createGrid() {
         JPanel panelGrid = new JPanel(new GridLayout(size, size));
         mainPanel.add(panelGrid, BorderLayout.CENTER);
@@ -125,22 +209,7 @@ public class FinestraCreaPuzzle {
             for (int j = 0; j < size; ++j) {
                 grid[i][j] = new JPanel(new BorderLayout());
                 grid[i][j].setBorder(BorderFactory.createLineBorder(Color.black));
-                int tmpI = i, tmpJ = j;
-                grid[i][j].addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        JPanel clickedPanel = (JPanel) e.getSource();
-                        if (clickedPanel.getBackground().equals(new Color(238, 238, 238))) {
-                            clickedPanel.setBackground(Color.CYAN);
-                            Point point = new Point(size - tmpI - 1, tmpJ);
-                            points.add(point);
-                        } else if (clickedPanel.getBackground().equals(Color.CYAN)) {
-                            clickedPanel.setBackground(new Color(238, 238, 238));
-                            Point point = new Point(size - tmpI - 1, tmpJ);
-                            points.remove(point);
-                        }
-                    }
-                });
+                grid[i][j].addMouseListener(new MouseEventManager(i, j));
                 grid[i][j].setPreferredSize(new Dimension(50, 50));
                 panelGrid.add(grid[i][j], i, j);
             }

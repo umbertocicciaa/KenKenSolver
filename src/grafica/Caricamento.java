@@ -45,7 +45,7 @@ public class Caricamento {
         @Override
         protected void done() {
             if (doInBackground()) {
-                new FinestraSoluzione(risolutore.risolviPuzzle().getBoard());
+                java.awt.EventQueue.invokeLater(() -> new FinestraSoluzione(risolutore.risolviPuzzle().getBoard()));
                 frame.dispose();
             } else {
                 frame.dispose();

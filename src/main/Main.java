@@ -4,6 +4,6 @@ import grafica.FinestraMain;
 
 public class Main {
     public static void main(String[] args) {
-        new FinestraMain();
-    }
+        java.awt.EventQueue.invokeLater(FinestraMain::new);
+    }   
 }
