@@ -29,6 +29,12 @@ public final class UIUtil {
         frame.setLocation(x, y);
     }
 
+    /**
+     * <p>Questa metodo genera un colore non troppo scuro</p>
+     *
+     * @return Color colore generato
+     */
+
     public static Color getRandColor() {
         int r = (int) (Math.random() * 255);
         int g = (int) (Math.random() * 255);
