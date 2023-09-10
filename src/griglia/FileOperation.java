@@ -1,7 +1,7 @@
 package griglia;
 
 import giocare.Gioco;
-import grafica.SingletonController;
+import mediator.SingletonController;
 
 import javax.swing.*;
 import java.io.*;
@@ -91,7 +91,7 @@ public final class FileOperation {
     public static void openOnBoard(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
         boolean trovatoSeparatore = false;
-        JTextField[][] testo = singletonController.getGestoreFinestra().getTextGriglia();
+        JTextField[][] testo = singletonController.getFinestraMain().getTextGriglia();
         int size = singletonController.getPuzzle().getSize();
         int i = 0, j = 0;
         while (scanner.hasNextLine()) {

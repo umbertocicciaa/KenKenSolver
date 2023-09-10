@@ -1,21 +1,13 @@
 package grafica;
 
-import giocare.Gioco;
-import griglia.*;
-import griglia.Point;
+import mediator.SingletonController;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.*;
-
 /**
- * Questa classe realizza la finestra principale.
+ * <p>Questa classe implementa la finestra principale del software</p>
  */
-public class FinestraMain implements ActionListener {
+public class FinestraMain {
     private JFrame frame;
     private JPanel pannelloPrincipale;
     private JPanel panelloGriglia;
@@ -30,28 +22,35 @@ public class FinestraMain implements ActionListener {
     private JMenuItem exit;
     private JMenuItem help;
     private JMenuItem nuovo;
-    /**
-     * <p>{@code singletonController} mediatore tra la GUI e il modello</p>
-     *
-     * @see SingletonController
-     */
-    private final SingletonController singletonController;
-    /**
-     * <p>{@code gestoreStato} gestisce gli stati della finestra</p>
-     *
-     * @see GestoreStato
-     */
-    private final GestoreStato gestoreStato = new GestoreStato() {
-    };
 
     public FinestraMain() {
         createWindow();
         createButton();
-        singletonController = SingletonController.CONTROLLER;
-        singletonController.setGestoreFinestra(this);
+        SingletonController controller = SingletonController.CONTROLLER;
+        controller.setFinestraMain(this);
+        controller.addListenerToFinestraMainButton();
         frame.pack();
         frame.setVisible(true);
+    }
 
+    public JMenuItem getLoad() {
+        return load;
+    }
+
+    public JMenuItem getSave() {
+        return save;
+    }
+
+    public JMenuItem getExit() {
+        return exit;
+    }
+
+    public JMenuItem getHelp() {
+        return help;
+    }
+
+    public JMenuItem getNuovo() {
+        return nuovo;
     }
 
     public JButton getRisolvi() {
@@ -62,21 +61,50 @@ public class FinestraMain implements ActionListener {
         return controllo;
     }
 
+    public JButton getCancella() {
+        return cancella;
+    }
+
     public JButton getSubmit() {
         return submit;
     }
 
-    public JButton getCancella() {
-        return cancella;
+    public JPanel getPannelloPrincipale() {
+        return pannelloPrincipale;
+    }
+
+    public void setPanelloGriglia(JPanel panelloGriglia) {
+        this.panelloGriglia = panelloGriglia;
+    }
+    public JPanel getPanelloGriglia() {
+        return panelloGriglia;
+    }
+
+    public void setGriglia(JPanel[][] griglia) {
+        this.griglia = griglia;
+    }
+
+    public void setTextGriglia(JTextField[][] textGriglia) {
+        this.textGriglia = textGriglia;
+    }
+
+    public JPanel[][] getGriglia() {
+        return griglia;
     }
 
     public JTextField[][] getTextGriglia() {
         return textGriglia;
     }
 
-    /**
-     * <p>Il metodo crea e inserisce i pulsanti sulla finestra</p>
-     */
+    private void createWindow() {
+        frame = new JFrame();
+        pannelloPrincipale = new JPanel();
+        pannelloPrincipale.setLayout(new BorderLayout());
+        frame.setContentPane(pannelloPrincipale);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        UIUtil.centra(frame, 500, 500);
+    }
+
     private void createButton() {
         JMenuBar bar = new JMenuBar();
         JMenu file = new JMenu("File");
@@ -85,7 +113,6 @@ public class FinestraMain implements ActionListener {
         JMenu helpM = new JMenu("Help");
         help = new JMenuItem("Help");
         helpM.add(help);
-        help.addActionListener(this);
         bar.add(helpM);
 
         load = new JMenuItem("Open");
@@ -93,10 +120,6 @@ public class FinestraMain implements ActionListener {
         exit = new JMenuItem("Exit");
         nuovo = new JMenuItem("Crea Nuovo Puzzle");
 
-        load.addActionListener(this);
-        save.addActionListener(this);
-        exit.addActionListener(this);
-        nuovo.addActionListener(this);
 
         file.add(nuovo);
         file.add(load);
@@ -126,204 +149,12 @@ public class FinestraMain implements ActionListener {
         command.add(controllo);
         command.add(cancella);
         command.add(submit);
-
-        frame.setContentPane(pannelloPrincipale);
     }
 
-    /**
-     * <p>Il metodo crea la finestra principale</p>
-     */
-    private void createWindow() {
-        frame = new JFrame();
-        pannelloPrincipale = new JPanel();
-        pannelloPrincipale.setLayout(new BorderLayout());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        UIUtil.centra(frame, 500, 500);
+    public void refresh(){
+        frame.repaint();
+        frame.revalidate();
+        frame.pack();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == exit) {
-            System.exit(1);
-        } else if (e.getSource() == load) {
-            try {
-                File file;
-                JFileChooser fileChooser = new JFileChooser();
-                int response = fileChooser.showOpenDialog(null); //select file to open
-                if (response == JFileChooser.APPROVE_OPTION) {
-                    file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                    Puzzle puzzle = FileOperation.createPuzzleFromFile(file);
-                    singletonController.setFile(file);
-                    singletonController.setPuzzle(puzzle);
-                    gestoreStato.transition(new PuzzleCaricato());
-                }
-
-            } catch (FileNotFoundException | RuntimeException exception) {
-                exception.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Errore caricamento file: formato errato", "File errato", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Errore generico", "Errore generico", JOptionPane.ERROR_MESSAGE);
-            }
-        } else if (e.getSource() == save) {
-            JFileChooser fileChooser = new JFileChooser();
-            File file;
-            int response = fileChooser.showSaveDialog(null);
-            if (response == JFileChooser.APPROVE_OPTION) {
-                file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                try {
-                    singletonController.savingFile(file);
-                    JOptionPane.showMessageDialog(null, "File salvato correttamente!");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(null, "Errore salvataggio file.");
-                }
-            }
-
-        } else if (e.getSource() == help) {
-            JOptionPane.showMessageDialog(null, """
-                    Questo software risolve il gioco ufficiale kenken.
-                    Ogni puzzle ha una sola soluzione(vedi sito ufficiale)
-                    Regole:
-                    puoi inserire i numeri da 1 fino alla dimensione del puzzle;
-                    puoi inserire un numero se non è gia presente nella stessa riga o colonna;
-                    per vincere il totale all'interno di un blocco deve essere ottenuto attraverso l'operazione aritmetica raffigurata tra i numeri inseriti nel blocco""", "Kenken puzzle", JOptionPane.INFORMATION_MESSAGE);
-        } else if (e.getSource() == nuovo) {
-            int number = 0;
-            String answer;
-            do {
-                answer = JOptionPane.showInputDialog("Inserisci la dimensione del puzzle che vuoi creare (da 3 a 9)");
-                try {
-                    number = Integer.parseInt(answer);
-                    if (number < 3 || number > 9)
-                        JOptionPane.showMessageDialog(null, "Inserisci dimensione da 1 a 9", null, JOptionPane.WARNING_MESSAGE);
-                } catch (NumberFormatException exception) {
-                    exception.printStackTrace();
-                }
-            } while (number < 3 || number > 9);
-            new FinestraCreaPuzzle(number);
-        }
-    }
-
-    /**
-     * Questa classe realizza lo stato che si "ottiene" quando un puzzle viene caricato correttamente.
-     * Entrando in questo stato {@code entry} abilitamo tutti i pulsanti che possono essere utilizzati solo quando
-     * la finestra entra in questo stato. Ovviamente l'uscita {@code exit} da questo stato comporta il riadattamento della finestra
-     * e il diasabilitare di un insieme di comandi
-     */
-    public class PuzzleCaricato implements Stato {
-        private final int size;
-        private final static Map<Point, Color> colori = new HashMap<>();
-
-        public PuzzleCaricato() {
-            size = singletonController.getPuzzle().getSize();
-            frame.setTitle("Puzzle " + size + " x " + size);
-            singletonController.setPlayboard(new Gioco());
-        }
-
-        private void createPanel() {
-            panelloGriglia = new JPanel();
-            panelloGriglia.setLayout(new GridLayout(size, size));
-            pannelloPrincipale.add(panelloGriglia, BorderLayout.CENTER);
-            textGriglia = new JTextField[size][size];
-            griglia = new JPanel[size][size];
-            for (int i = 0; i < size; ++i) {
-                for (int j = 0; j < size; ++j) {
-                    griglia[i][j] = new JPanel();
-                    griglia[i][j].setPreferredSize(new Dimension(100, 100));
-                    textGriglia[i][j] = new JTextField();
-                    griglia[i][j].setLayout(new BorderLayout());
-                    griglia[i][j].add(textGriglia[i][j], BorderLayout.CENTER);
-                    panelloGriglia.add(griglia[i][j], i, j);
-                }
-            }
-        }
-
-        @Override
-        public void entry() {
-            risolvi.setEnabled(true);
-            controllo.setEnabled(true);
-            cancella.setEnabled(true);
-            risolvi.setEnabled(true);
-            submit.setEnabled(true);
-            save.setEnabled(true);
-            createPanel();
-            setPuzzleOnPanel();
-            singletonController.setDocumentListenerText();
-            try {
-                singletonController.openBoard();
-            } catch (Exception exc) {
-                exc.printStackTrace();
-            }
-            frame.pack();
-            frame.revalidate();
-            frame.repaint();
-        }
-
-        @Override
-        public void exit() {
-            pannelloPrincipale.remove(panelloGriglia);
-            risolvi.setEnabled(false);
-            controllo.setEnabled(false);
-            controllo.setSelected(false);
-            cancella.setEnabled(false);
-            risolvi.setEnabled(false);
-            submit.setEnabled(false);
-            save.setEnabled(false);
-        }
-
-        private void setPuzzleOnPanel() {
-            Set<Cage> cages = singletonController.getPuzzle().getCages();
-            for (Cage cage : cages) {
-                Color color = UIUtil.getRandColor();
-                int target = cage.getTargetNumber();
-                Operator operator = cage.getCageOperation();
-                String op = getStringByOP(operator);
-                Iterator<Point> points = Arrays.stream(cage.getCagePoint()).iterator();
-                Point primo = points.next();
-                JLabel textArea = new JLabel(target + " " + op);
-                textArea.setBackground(color);
-                colori.put(primo, color);
-                int x = primo.x();
-                int y = primo.y();
-                griglia[size - x - 1][y].add(textArea, BorderLayout.NORTH);
-                griglia[size - x - 1][y].setBackground(color);
-                textGriglia[size - x - 1][y].setBackground(color);
-                while (points.hasNext()) {
-                    Point point = points.next();
-                    x = point.x();
-                    y = point.y();
-                    griglia[size - x - 1][y].setBackground(color);
-                    textGriglia[size - x - 1][y].setBackground(color);
-                    colori.put(point, color);
-                }
-            }
-        }
-
-        private String getStringByOP(Operator operator) {
-            switch (operator) {
-                case MUL -> {
-                    return "*";
-                }
-                case DIV -> {
-                    return "/";
-                }
-                case SUM -> {
-                    return "+";
-                }
-                case SUB -> {
-                    return "-";
-                }
-                case NONE -> {
-                    return "";
-                }
-            }
-            return "";
-        }
-
-        public static Color getColor(int x, int y) {
-            return colori.get(new Point(x, y));
-        }
-
-    }
 }

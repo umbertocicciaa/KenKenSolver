@@ -1,6 +1,6 @@
 package giocare;
 
-import grafica.SingletonController;
+import mediator.SingletonController;
 import griglia.Cage;
 import griglia.Operator;
 import griglia.Point;

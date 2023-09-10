@@ -1,5 +1,7 @@
 package grafica;
 
+import mediator.SingletonController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -35,7 +37,7 @@ public class FinestraSoluzione {
                 pannelli[i][j] = new JPanel(new BorderLayout());
                 pannelli[i][j].setPreferredSize(new Dimension(75, 75));
                 label[i][j].setText("" + soluzione[size - i - 1][j]);
-                pannelli[i][j].setBackground(FinestraMain.PuzzleCaricato.getColor(size - i - 1, j));
+                pannelli[i][j].setBackground(SingletonController.getColor(size - i - 1, j));
                 pannelli[i][j].add(label[i][j], BorderLayout.CENTER);
                 gridPanel.add(pannelli[i][j], i, j);
             }

@@ -1,7 +1,7 @@
 package grafica;
 
-import griglia.*;
 import griglia.Point;
+import griglia.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -224,3 +224,4 @@ public class FinestraCreaPuzzle {
         UIUtil.centra(frame, 500, 500);
     }
 }
+

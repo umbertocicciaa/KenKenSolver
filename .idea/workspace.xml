@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="KenKenSolver:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f282bd92-532c-4457-8736-75e101f5bcab" name="Changes" comment="added documentation">
+      <change afterPath="$PROJECT_DIR$/src/main/package-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mediator/SingletonController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/mediator/package-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/grafica/Caricamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/Caricamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/giocare/Gioco.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/giocare/Gioco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/grafica/FinestraCreaPuzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraCreaPuzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Cage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/griglia/Puzzle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/Puzzle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/FinestraMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/FinestraSoluzione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafica/FinestraSoluzione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/GestoreStato.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/SingletonController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafica/Stato.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/griglia/FileOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/griglia/FileOperation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,11 +31,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
         <option value="Interface" />
         <option value="Enum" />
         <option value="package-info" />
-        <option value="Class" />
-        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -52,36 +63,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;create.test.in.the.same.root&quot;: &quot;true&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;rebuild&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/umbertodomenicociccia/Desktop/ing software/KenKenSolver&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "create.test.in.the.same.root": "true",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "rebuild",
+    "jdk.selected.JAVA_MODULE": "openjdk-20",
+    "last_opened_file_path": "/Users/umbertodomenicociccia/Desktop/ing software/KenKenSolver/src/grafica",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="risolutore" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/grafica" />
+      <recent name="$PROJECT_DIR$/../Refactory/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/testresource" />
@@ -100,6 +116,10 @@
       <recent name="testing" />
       <recent name="test" />
       <recent name="griglia" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mediator" />
+      <recent name="grafica" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -206,6 +226,13 @@
       <workItem from="1693565995897" duration="64597000" />
       <workItem from="1693844614794" duration="44629000" />
       <workItem from="1693986096195" duration="16005000" />
+      <workItem from="1694247554348" duration="28000" />
+      <workItem from="1694271402383" duration="1140000" />
+      <workItem from="1694272557193" duration="17000" />
+      <workItem from="1694272770172" duration="41000" />
+      <workItem from="1694340796227" duration="4984000" />
+      <workItem from="1694348274843" duration="817000" />
+      <workItem from="1694349201007" duration="846000" />
     </task>
     <task id="LOCAL-00001" summary="saved modify">
       <option name="closed" value="true" />
