@@ -21,7 +21,6 @@ public class FileOperationTest {
     public void shouldThrowNoSuchFileException() {
         Assertions.assertThrows(FileNotFoundException.class, () -> FileOperation.createPuzzleFromFile(new File("")));
         Assertions.assertThrows(FileNotFoundException.class, () -> FileOperation.openOnBoard(new File("")));
-
     }
 
     @Test
@@ -37,7 +36,6 @@ public class FileOperationTest {
             Puzzle puzzle = FileOperation.createPuzzleFromFile(f);
             Assertions.assertNotNull(puzzle);
         });
-
     }
 
     private static Stream<Arguments> fileParameter() {
@@ -45,9 +43,8 @@ public class FileOperationTest {
                 Arguments.of(new File("src/test/source/puzzle4x4.txt")),
                 Arguments.of(new File("src/test/source/puzzle5x5.txt")),
                 Arguments.of(new File("src/test/source/puzzle6x6.txt")),
-                Arguments.of(new File("src/test/source/puzzle9x9.txt"))
+                Arguments.of(new File("src/test/source/puzzle9x9.txt")),
+                Arguments.of(new File("src/test/source/puzzleirrisolvibile.txt"))
         );
     }
-
-
 }

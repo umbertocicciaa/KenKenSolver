@@ -9,12 +9,13 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.File;
 import java.util.stream.Stream;
 
 public class PuzzleTest {
     @ParameterizedTest
     @MethodSource(
-            "parameter"
+            "parameterSource"
     )
     public void shouldThrowIllegalArgumentExceptionSize(int size) {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Puzzle.PuzzleBuilder(size));
@@ -37,10 +38,14 @@ public class PuzzleTest {
             builder.build();
         });
     }
-    private static Stream<Arguments> parameter() {
+    private static Stream<Arguments> parameterSource() {
         return Stream.of(
                 Arguments.of(2),
-                Arguments.of(10)
+                Arguments.of(10),
+                Arguments.of(1),
+                Arguments.of(11),
+                Arguments.of(0),
+                Arguments.of(12)
         );
     }
 }

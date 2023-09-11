@@ -17,8 +17,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class RisolutoreTest {
 
     @ParameterizedTest
-    @MethodSource("fileParameter")
-    void risolviKenken(File f) {
+    @MethodSource("fileParameterSolvable")
+    void risolviKenkenCorrettamente(File f) {
+        assertDoesNotThrow(() -> {
+            Risolutore risolutore = new Risolutore(new RisolutoreBacktracking(FileOperation.createPuzzleFromFile(f)));
+            risolutore.risolviKenken();
+        });
+    }
+
+    @ParameterizedTest
+    @MethodSource("fileParameterSolvable")
+    void soluzioneTrovabile(File f) {
         assertDoesNotThrow(() -> {
             Risolutore risolutore = new Risolutore(new RisolutoreBacktracking(FileOperation.createPuzzleFromFile(f)));
             risolutore.risolviKenken();
@@ -26,7 +35,23 @@ class RisolutoreTest {
         });
     }
 
-    private static Stream<Arguments> fileParameter() {
+    @ParameterizedTest
+    @MethodSource("fileParameterNotSolvable")
+    void soluzioneNonTrovabile(File f) {
+        assertDoesNotThrow(() -> {
+            Risolutore risolutore = new Risolutore(new RisolutoreBacktracking(FileOperation.createPuzzleFromFile(f)));
+            risolutore.risolviKenken();
+            Assertions.assertFalse(risolutore.trovataSoluzione());
+        });
+    }
+
+    private static Stream<Arguments> fileParameterNotSolvable() {
+        return Stream.of(
+                Arguments.of(new File("src/test/source/puzzleirrisolvibile.txt"))
+        );
+    }
+
+    private static Stream<Arguments> fileParameterSolvable() {
         return Stream.of(
                 Arguments.of(new File("src/test/source/puzzle4x4.txt")),
                 Arguments.of(new File("src/test/source/puzzle5x5.txt")),
